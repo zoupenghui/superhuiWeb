@@ -1,0 +1,53 @@
+﻿@model BlogListViewModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="logotxt"><h1><a asp-action="list">SuperHui</a></h1></div>
+                @*<h2 class="site-name text-center">Blog<span>www.zoupenghui.com</span></h2>*@
+            </div>
+        </div>
+    </div>
+</div>
+<main class="main container" role="main">
+    <div class="row panel">
+        <div id="categories" class="col-xs-3">
+            @await Component.InvokeAsync("NavigationMenu")
+        </div>
+        <div class="col-xs-8">
+            <div class="container">
+                <div class="row" id="post-list">
+                    @foreach (var a in Model.Blogs)
+                    {
+                        <div class="col-xs-12 col-sm-12" style="margin:10px 0">
+                            <a asp-action="Edit" asp-route-blogId="@a.BlogID" style="display:inline" class="btn btn-primary btn-sm">编辑</a>
+                            <a asp-action="Index" asp-route-blogId="@a.BlogID">@a.Name</a>
+                        </div>
+                    }
+
+                </div>
+                <nav page-model="@Model.PagingInfo"
+                     page-action="List"
+                     page-url-category="@Model.CurrentCategory"
+                     page-pre-class="newer-posts"
+                     page-next-class="older-posts"
+                     class="pagination">
+                </nav>
+                @*<div page-model="@Model.PagingInfo"
+                         page-action="List"
+                         page-classes-enabled="true"
+                         page-class="btn"
+                         page-class-normal="btn-default"
+                         page-class-selected="btn-primary"
+                         page-url-category="@Model.CurrentCategory"
+                         class="btn-group pull-right">
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</main>
+
