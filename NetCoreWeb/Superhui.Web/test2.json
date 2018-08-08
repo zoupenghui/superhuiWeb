@@ -1,0 +1,16 @@
+﻿{
+  "ass_month": "08",
+  "zon_cd": "330302000000",
+  "ind_bit": "1",
+  "str_cd": "330302006000",
+  "city_cd": "330300000000",
+  "ass_scope": "",
+  "prov_cd": "330000000000",
+  "acc_cgy": "1",
+  "pagination": {
+    "current": 1,
+    "pageSize": 1000
+  },
+  "ass_annual": "2018",
+  "ass_period": "2" // 3yue
+}
