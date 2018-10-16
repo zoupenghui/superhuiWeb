@@ -25,7 +25,7 @@ namespace Superhui.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
 
             services.AddDbContext<Models.AppIdentityDbContext>(options => options.UseSqlServer(Configuration["Data:Identity:ConnectionString"]));
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
@@ -58,10 +58,13 @@ namespace Superhui.Web
             app.UseAuthentication();
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "areas", template: "{area:exists}/{controller=Blog}/{action=List}");
+                routes.MapRoute(name: "areas", template: "{area:exists=racs}/{controller=Home}/{action=Index}");
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "out",
+                    template: "outbound{controller}/{action}");
             });
             //IdentitySeedData.EnsurePopulated(app);//身份验证
         }

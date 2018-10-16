@@ -20,8 +20,23 @@
 
   <ItemGroup>
     <Content Remove="test2.json" />
+    <Content Remove="Areas\Docs %28副本%29\Views\Sample\Index.cshtml" />
+    <Content Remove="Areas\Docs %28副本%29\Views\Blog\List.cshtml" />
+    <Content Remove="Areas\Docs %28副本%29\Views\Blog\Create.cshtml" />
+    <Content Remove="Areas\Docs %28副本%29\Views\Blog\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="test2.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Racs\" />
+    <Folder Include="Areas\Racs\Models\ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Areas\Docs %28副本%29\Controllers\SampleController.cs" />
+    <Compile Remove="Areas\Docs %28副本%29\Models\Blog.cs" />
+    <Compile Remove="Areas\Docs %28副本%29\Models\BlogDbContext.cs" />
+    <Compile Remove="Areas\Docs %28副本%29\Models\ViewModels\BlogIndexViewModel.cs" />
+    <Compile Remove="Areas\Docs %28副本%29\Components\NavigationMenuViewComponent.cs" />
   </ItemGroup>
 </Project>
