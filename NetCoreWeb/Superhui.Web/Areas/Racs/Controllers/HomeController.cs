@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Superhui.Web.Areas.Docs.Models;
 using Superhui.Web.Areas.Docs.Models.ViewModels;
 using Superhui.Web.Models.ViewModels;
+using Superhui.Web.Utility;
+using Newtonsoft.Json.Linq;
 
 namespace Superhui.Web.Areas.Racs.Controllers
 {
@@ -21,9 +23,14 @@ namespace Superhui.Web.Areas.Racs.Controllers
         {
         }
         // GET: Blog
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var http = NetworkRequest.CreateHttp("http://localhost:58221/api/fileInfo/packages");
+            var bytes = await http.GetAsync();
+            string fileInfoStr = Encoding.UTF8.GetString(bytes);
+            JObject o = JObject.Parse(fileInfoStr);
+            JArray fileInfoArray = (JArray)o.SelectToken("children");
+            return View(fileInfoArray);
         }
     }
 }

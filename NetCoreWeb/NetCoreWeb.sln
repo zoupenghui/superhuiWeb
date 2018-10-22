@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superhui.Web", "Superhui.Web\Superhui.Web.csproj", "{F0BEDB38-FDBB-4508-B99C-0A8627AC0C6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superhui.Tls", "Superhui.Tls\Superhui.Tls.csproj", "{73CCF8A8-3B02-4E54-900E-525959498EE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F0BEDB38-FDBB-4508-B99C-0A8627AC0C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0BEDB38-FDBB-4508-B99C-0A8627AC0C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0BEDB38-FDBB-4508-B99C-0A8627AC0C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CCF8A8-3B02-4E54-900E-525959498EE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CCF8A8-3B02-4E54-900E-525959498EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CCF8A8-3B02-4E54-900E-525959498EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CCF8A8-3B02-4E54-900E-525959498EE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
