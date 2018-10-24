@@ -32,6 +32,7 @@
     <Folder Include="Areas\Racs\" />
     <Folder Include="Areas\Racs\Models\ViewModels\" />
     <Folder Include="Utility\" />
+    <Folder Include="Areas\Echart\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Areas\Docs %28副本%29\Controllers\SampleController.cs" />

@@ -1,0 +1,7 @@
+
+.fp-tableCell{vertical-align:top;}
+.fp-slidesNav.bottom{bottom:5px; text-align:center;}
+#fp-nav.left{left:0px;}
+#fp-nav.right{right:0px;}
+
+.slide .echarts-prompts{z-index:9999;position:absolute;left:8%;top:50%;font-size:0.3rem;color:#666;display:none;}
