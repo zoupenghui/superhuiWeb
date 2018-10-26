@@ -33,6 +33,9 @@
     <Folder Include="Areas\Racs\Models\ViewModels\" />
     <Folder Include="Utility\" />
     <Folder Include="Areas\Echart\" />
+    <Folder Include="Infrastructure\Interface\" />
+    <Folder Include="Utility\NetworkRequest\" />
+    <Folder Include="Infrastructure\NetworkRequest\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Areas\Docs %28副本%29\Controllers\SampleController.cs" />
@@ -40,5 +43,8 @@
     <Compile Remove="Areas\Docs %28副本%29\Models\BlogDbContext.cs" />
     <Compile Remove="Areas\Docs %28副本%29\Models\ViewModels\BlogIndexViewModel.cs" />
     <Compile Remove="Areas\Docs %28副本%29\Components\NavigationMenuViewComponent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Superhui.AspNetCore\Superhui.AspNetCore.csproj" />
   </ItemGroup>
 </Project>

@@ -19,7 +19,7 @@ var globaleCharPieData;
 var globaleCharBarData;
 
 !function () {
-	AjaxRequest("/fetchuserinfo", areaSelectInit, "", "GET");
+	AjaxRequest("religion/fetchuserinfo", areaSelectInit, "", "GET");
 }();
 
 function areaSelectInit(responseData) {
@@ -78,7 +78,7 @@ function areaSelectInit(responseData) {
 				// console.log(data);
 			},
 			callback: function (indexArr, data) {
-				console.log(data);
+				// console.log(data);
 				selectElementArray.forEach((secectItem) => {
 					secectItem.attr("value", data[0]);
 				});
@@ -143,7 +143,7 @@ function getReligionOrganizationDistributionData() {
 		zon_cd: isNullOrEmpty(AreaSelectedValue.districtOrCountyCode) ? "" : AreaSelectedValue.districtOrCountyCode
 	};
 
-	AjaxRequest("/api/sa/org_num_rslt/search", getReligionTeacherDistributionDataHandle, requestData, "POST", function () {
+	AjaxRequest("religion/api/sa/org_num_rslt/search", getReligionTeacherDistributionDataHandle, requestData, "POST", function () {
 		$("#section1-slide1-echarts-prompts").css("display", "block");
 		$("#section1-slide2-echarts-prompts").css("display", "block");
 		$("#section2-slide1-echarts-prompts").css("display", "block");
@@ -218,7 +218,7 @@ function getReligionTeacherDistributionDataHandle(responseData) {
 		childrenAreaInfoArray = responseData.org_next_num_grp;
 
 		globaleCharBarData = responseData.org_next_num_grp;
-		console.log('set data: ', globaleCharBarData);
+		// console.log('set data: ', globaleCharBarData);
 	}
 	else {
 		childrenAreaInfoArray = [];
@@ -270,7 +270,7 @@ function drawReligionOganizationProportionCharts(currentAreaInfo) {
 }
 
 function drawReligionOganizationDistributionCharts(childrenAreaInfoArray, rlg) {
-	console.log('hello', rlg, childrenAreaInfoArray);
+	// console.log('hello', rlg, childrenAreaInfoArray);
 	if (!section2Slide2Charts1) {
 		section2Slide2Charts1 = echarts.init(document.getElementById("section2-slide2-charts1-container"), echartsTheme);
 	}
@@ -330,19 +330,19 @@ function drawReligionOganizationDistributionCharts(childrenAreaInfoArray, rlg) {
 			{
 				name: '省级',
 				type: 'bar',
-				stack: '省级总数',
+				stack: '宗教团体分布情况',
 				data: prov_Array
 			},
 			{
 				name: '市级',
 				type: 'bar',
-				stack: '市级总数',
+				stack: '宗教团体分布情况',
 				data: city_Array
 			},
 			{
 				name: '区县级',
 				type: 'bar',
-				stack: '区县级总数',
+				stack: '宗教团体分布情况',
 				data: zon_Array
 			}
 		];
@@ -492,6 +492,6 @@ function getAreaData(currentAreaCode, getAreaDataHandle) {
 		adiv_cd: currentAreaCode
 	};
 
-	AjaxRequest("/api/rgoncd", getAreaDataHandle, requestData, "POST");
+	AjaxRequest("religion/api/rgoncd", getAreaDataHandle, requestData, "POST");
 }
 

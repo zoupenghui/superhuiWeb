@@ -20,7 +20,7 @@ namespace Superhui.Tls
         public static T Get<T>(this NetworkRequest source) where T : class
         {
             byte[] bytes = source.Get();
-            return TypeConvertAsync<T>(bytes).Result;
+            return TypeConvert<T>(bytes);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Superhui.Tls
         public static async Task<T> GetAsync<T>(this NetworkRequest source) where T : class
         {
             byte[] bytes = await source.GetAsync();
-            return await TypeConvertAsync<T>(bytes);
+            return TypeConvert<T>(bytes);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Superhui.Tls
         public static T Post<T>(this NetworkRequest source, string body = null) where T : class
         {
             byte[] bytes = source.Post(body);
-            return TypeConvertAsync<T>(bytes).Result;
+            return TypeConvert<T>(bytes);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Superhui.Tls
         public static async Task<T> PostAsync<T>(this NetworkRequest source, string body = null) where T : class
         {
             byte[] bytes = await source.PostAsync(body);
-            return await TypeConvertAsync<T>(bytes);
+            return TypeConvert<T>(bytes);
         }
 
         /// <summary>
@@ -71,7 +71,28 @@ namespace Superhui.Tls
         /// <typeparam name="T"></typeparam>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        private static async Task<T> TypeConvertAsync<T>(byte[] bytes) where T : class
+        //private static async Task<T> TypeConvertAsync<T>(byte[] bytes) where T : class
+        //{
+        //    if (bytes == null)
+        //        return default(T);
+        //    if (typeof(T).Equals(typeof(string)))
+        //    {
+        //        return Encoding.UTF8.GetString(bytes) as T;
+        //    }
+        //    //else if (typeof(T).Equals(typeof(BitmapImage)))
+        //    //{
+        //    //    return await ToolsLib.Utility.GetBitmapImageAsync(bytes) as T;
+        //    //}
+        //    else if (typeof(T).Equals(typeof(byte[])))
+        //    {
+        //        return bytes as T;
+        //    }
+        //    else
+        //    {
+        //        return default(T);
+        //    }
+        //}
+        private static T TypeConvert<T>(byte[] bytes) where T : class
         {
             if (bytes == null)
                 return default(T);

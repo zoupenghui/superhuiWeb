@@ -78,7 +78,7 @@ function AjaxRequest(requestUrl, successFunc, requestData, requestType, errorFun
 		type:requestType,
 		dataType:"json",
 		headers:{
-			Authorization:getAuthorizationStr(),
+            Authorization:getAuthorizationStr(),
 			channel:"app"
 		},
 		success:function (responseData, textStatus, xhr) {

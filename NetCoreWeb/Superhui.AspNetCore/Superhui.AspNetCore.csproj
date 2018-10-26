@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Http\" />
+    <Folder Include="Http\HttpRetransmit\" />
+    <Folder Include="Http\Interface\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Superhui.Tls\Superhui.Tls.csproj" />
+  </ItemGroup>
+</Project>

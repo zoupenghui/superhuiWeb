@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Superhui.Tls
 {
-    public class NetworkRequest
+    public class NetworkRequest : INetworkHttpRequest
     {
         //const double TIME_OUT = 5000;//默认网络请求超时时间5s
         //private DispatcherTimer timer;
@@ -66,7 +66,7 @@ namespace Superhui.Tls
         /// <summary>
         /// 创建HttpRequest实例
         /// </summary>
-        /// <param name="requestUriString">标识 Internet 资源的 URI。</param>
+        /// <param name="requestUri">标识 Internet 资源的 URI。</param>
         /// <returns></returns>
         public static NetworkRequest CreateHttp(Uri requestUri)
         {
