@@ -39,9 +39,6 @@ namespace Superhui.Api
             });
             //services.AddSingleton<IFileProvider>(new PhysicalFileProvider("/Users/zph/Desktop/"));
             services.AddSingleton<IFileProvider>(new PhysicalFileProvider((Configuration.GetSection("Assets")?.GetValue<string>("FileLoacation"))));
-
-            // services.AddSingleton<IFileProvider>(new PhysicalFileProvider("C:\\"));
-            // services.AddSingleton<IFileProvider>(new PhysicalFileProvider("C:/Users/XPS/Desktop"));
             services.AddMvc();
         }
 
@@ -56,10 +53,10 @@ namespace Superhui.Api
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: null,
-                    template: "home/localfile/{*catchall}",
-                    defaults: new { controller="Home", action="LocalFile"});
+                //routes.MapRoute(
+                    //name: null,
+                    //template: "home/localfile/{*catchall}",
+                    //defaults: new { controller="Home", action="LocalFile"});
                 routes.MapRoute(
                     name: null,
                     template: "{controller}/{action}/{id?}");

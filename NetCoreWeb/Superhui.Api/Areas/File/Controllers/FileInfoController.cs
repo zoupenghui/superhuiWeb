@@ -9,12 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json.Linq;
 
-namespace Superhui.Api.Controllers
+namespace Superhui.Api.Areas.File.Controllers
 {
     /// <summary>
     /// get file tree infomation
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("[Area]/api/[controller]")]
+    [Area("File")]
     [EnableCors("AllowSepecificOrigins")]
     public class FileInfoController : Controller
     {
@@ -29,12 +30,21 @@ namespace Superhui.Api.Controllers
         [HttpGet("{*fileName}")]
         public string Get(string fileName = "" )
         {
-            IFileInfo fileInfo_root = _fileProvider.GetFileInfo($"/{fileName}");
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                fileName = "";
+            }
+            fileName = $"/{fileName.Trim('/')}";
+            IDirectoryContents dirContents = _fileProvider.GetDirectoryContents(fileName);
+            if (dirContents.Count() <= 0)
+            {
+                return "";
+            }
             strBuilder.Append("{");
-            strBuilder.Append($"\"name\":\"{fileInfo_root.Name}\",");
-            strBuilder.Append($"\"path\":\"/{fileInfo_root.Name}\",");
+            strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
+            strBuilder.Append($"\"path\":\"{fileName}\",");
             strBuilder.Append("\"children\":[");
-            Render($"/{fileInfo_root.Name}");
+            Render($"{fileName}");
             strBuilder.Remove(strBuilder.Length - 1, 1);
             strBuilder.Append("]");
             strBuilder.Append("}");
@@ -55,19 +65,19 @@ namespace Superhui.Api.Controllers
                 strBuilder.Append($"\"name\":\"{GetFileName(fileInfo.Name)}\",");
                 if (fileInfo.IsDirectory)
                 {
-                    strBuilder.Append($"\"path\":\"{subPath}/{fileInfo.Name}\",");
+                    strBuilder.Append($"\"path\":\"{subPath.TrimEnd('/')}/{fileInfo.Name}\",");
                     strBuilder.Append("\"children\":[");
                     // windows系统独有的路径分割符\
                     // Render($@"{subPath}\\{fileInfo.Name}".TrimStart('\\'));
                     // windows&linux都可识别/路径分割符
-                    Render($@"{subPath}/{fileInfo.Name}".TrimStart('\\'));
+                    Render($@"{subPath.TrimEnd('/')}/{fileInfo.Name}".TrimStart('\\'));
                     strBuilder.Remove(strBuilder.Length - 1, 1);
                     strBuilder.Append("]}");
                     strBuilder.Append(",");
                 }
                 else
                 {
-                    strBuilder.Append($"\"path\": \"{subPath}/{fileInfo.Name}\",".Replace('\\', '/'));
+                    strBuilder.Append($"\"path\": \"{subPath.TrimEnd('/')}/{fileInfo.Name}\",".Replace('\\', '/'));
                     strBuilder.Append($"\"info\":");
                     strBuilder.Append("{");
                     strBuilder.Append($"\"lastModified\":\"{fileInfo.LastModified.LocalDateTime}\",");

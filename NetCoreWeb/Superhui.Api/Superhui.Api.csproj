@@ -16,4 +16,10 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Superhui.AspNetCore\Superhui.AspNetCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\HomeController %28副本%29.cs" />
+  </ItemGroup>
 </Project>
