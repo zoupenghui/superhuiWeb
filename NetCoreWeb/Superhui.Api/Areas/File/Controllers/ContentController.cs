@@ -26,11 +26,14 @@ namespace Superhui.Api.Areas.File.Controllers
         [HttpGet("{*fileName}")]
         public async Task<string> Get(string fileName = "")
         {
-            logger.LogInformation($"begin get file conent : {HttpContext.Request.Path}");
-            logger.LogInformation($"route controller: {RouteData.Values["controller"]}");
-            logger.LogInformation($"route action: {RouteData.Values["action"]}");
-            logger.LogInformation($"route fileName: {RouteData.Values["fileName"]}");
-            logger.LogInformation($"param fileName: {fileName}");
+            // logger.LogInformation($"begin get file conent : {HttpContext.Request.Path}");
+            // logger.LogInformation($"route controller: {RouteData.Values["controller"]}");
+            // logger.LogInformation($"route action: {RouteData.Values["action"]}");
+            // logger.LogInformation($"route fileName: {RouteData.Values["fileName"]}");
+            // logger.LogInformation($"param fileName: {fileName}");
+            if (string.IsNullOrWhiteSpace(fileName)) {
+                return "";
+            }
             string path = fileName.TrimStart('/');
             IFileInfo file = _fileProvider.GetFileInfo(path);
 

@@ -12,6 +12,14 @@
         <strong>Request ID:</strong> <code>@Model.RequestId</code>
     </p>
 }
+@if (string.IsNullOrEmpty(Model.Message))
+{
+    <h3>Error message</h3>
+    <p>
+        <strong>@Model.Message</strong>
+    </p>
+}
+
 
 <h3>Development Mode</h3>
 <p>

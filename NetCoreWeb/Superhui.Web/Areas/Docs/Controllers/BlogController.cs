@@ -11,10 +11,12 @@ using Microsoft.AspNetCore.Mvc;
 using Superhui.Web.Areas.Docs.Models;
 using Superhui.Web.Areas.Docs.Models.ViewModels;
 using Superhui.Web.Models.ViewModels;
+using Superhui.Web.Infrastructure.Filters;
 
 namespace Superhui.Web.Areas.Docs.Controllers
 {
     [Area("Docs")]
+    [HttpsDisable]
     public class BlogController : Controller
     {
         private IBlogRepository repository;

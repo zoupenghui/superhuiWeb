@@ -64,7 +64,7 @@ namespace Superhui.Web
             app.UseMvc(routes =>
             {
                 // routes.MapRoute(name: "areas", template: "{area:exists=racs}/{controller=Home}/{action=Index}");
-                routes.MapRoute(name: "areas", template: "{area:exists=echart}/{controller=Home}/{action=Index}");
+                routes.MapRoute(name: "areas", template: "{area:exists}/{controller=Home}/{action=Index}");
                 routes.MapRoute(
                     name: "religion",
                     template: "religion/{*catchall}",
