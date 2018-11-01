@@ -1,0 +1,216 @@
+﻿@model String
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="~/lib/editor-md/examples/css/style.css" />
+    <link rel="stylesheet" href="~/lib/editor-md/css/editormd.preview.css" />
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+    @*<environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>*@
+    <style>
+        .editormd-html-preview {
+            width:900px;            
+        }
+        .editormd-preview-container, .editormd-html-preview {
+             margin:-20px;
+        }
+
+        #sidebar {
+            width: 280px;
+            position: fixed;
+            height: 100%;
+            margin-right: 20px;
+            padding-bottom: 0px;
+            padding-top: 0px;
+            overflow-y: scroll;
+        }
+
+        #content {
+            /* padding-left: 300px; */
+            margin-left: 50px;
+            margin-right: 0px;
+            /* margin-top:20px; */
+            background-color: antiquewhite;
+            /* width: 50%; */
+            margin: 0 auto;
+            
+        }
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+        #back_to_top {
+            /*display: none;*/
+            position: fixed;
+            height: 20px;
+            width: 70px;
+            bottom: 20px;
+            margin-left:850px;
+            margin-top: 0px;
+            color: rgb(255, 255, 255);
+            line-height: 20px;
+            text-align: center;
+            font-size: 10px;
+            background-color: rgb(170, 170, 170);
+            border-radius: 5px;
+        }
+        #edit {
+            position: fixed;
+            height: 20px;
+            width: 70px;
+            bottom: 20px;
+            margin-left: 930px;
+            margin-top: 0px;
+            color: rgb(255, 255, 255);
+            line-height: 20px;
+            text-align: center;
+            font-size: 10px;
+            background-color: rgb(170, 170, 170);
+            border-radius: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="layout" class="editormd-html-preview" style="margin: 0 auto;">
+            <div id="test-editormd-view">
+                <a id="top"></a>
+                <textarea style="display:none;" name="test-editormd-markdown-doc">@Model</textarea>
+            </div>
+            @*<div id="test-editormd-view2" class="editormd-html-preview">
+                    <textarea id="append-test" style="display:none;">@Model</textarea>
+                </div>*@
+        </div>
+    </div>
+    <div id="back_to_top"><a href="#top" style="text-decoration:none;color: rgb(255, 255, 255);">back to top</a></div>
+    @*<div id="edit">
+        <a asp-action="Edit"
+           asp-controller="Blog"
+           asp-route-blogId=@Model.CurrentBlog.BlogID
+           style="text-decoration:none;color: rgb(255, 255, 255);">
+            edite
+        </a>
+    </div>*@
+    <!-- <script src="js/zepto.min.js"></script>
+    <script>
+        var jQuery = Zepto;  // 为了避免修改flowChart.js和sequence-diagram.js的源码，所以使用Zepto.js时想支持flowChart/sequenceDiagram就得加上这一句
+    </script> -->
+    <script src="~/lib/editor-md/examples/js/jquery.min.js"></script>
+    <script src="~/lib/editor-md/lib/marked.min.js"></script>
+    <script src="~/lib/editor-md/lib/prettify.min.js"></script>
+
+    <script src="~/lib/editor-md/lib/raphael.min.js"></script>
+    <script src="~/lib/editor-md/lib/underscore.min.js"></script>
+    <script src="~/lib/editor-md/lib/sequence-diagram.min.js"></script>
+    <script src="~/lib/editor-md/lib/flowchart.min.js"></script>
+    <script src="~/lib/editor-md/lib/jquery.flowchart.min.js"></script>
+
+    <script src="~/lib/editor-md/editormd.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var testEditormdView, testEditormdView2;
+
+            //        $.get("http://localhost:52013/lib/editor-md/examples/test.md", function(markdown) {
+
+            //testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+            //                markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
+            //                //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+            //                htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            //                //toc             : false,
+            //                tocm            : true,    // Using [TOCM]
+            //                //tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+            //                //gfm             : false,
+            //                //tocDropdown     : true,
+            //                // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+            //                emoji           : true,
+            //                taskList        : true,
+            //                tex             : true,  // 默认不解析
+            //                flowChart       : true,  // 默认不解析
+            //                sequenceDiagram : true,  // 默认不解析
+            //            });
+
+            //            //console.log("返回一个 jQuery 实例 =>", testEditormdView);
+
+            //            // 获取Markdown源码
+            //            //console.log(testEditormdView.getMarkdown());
+
+            //            //alert(testEditormdView.getMarkdown());
+            //        });
+
+            testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+                markdown: "",
+                //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                //toc             : false,
+                tocm: true,    // Using [TOCM]
+                //tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+                //gfm             : false,
+                //tocDropdown     : true,
+                // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+            });
+
+            testEditormdView2 = editormd.markdownToHTML("test-editormd-view2", {
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+            });
+        });
+    </script>
+</body>
+</html>
+

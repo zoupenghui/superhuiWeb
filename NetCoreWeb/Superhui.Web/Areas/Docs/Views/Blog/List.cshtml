@@ -20,7 +20,7 @@
         </div>
         <div class="col-xs-8">
             <div class="container">
-                <div class="row" id="post-list">
+                <div>
                     @foreach (var a in Model.Blogs)
                     {
                         <div class="col-xs-12 col-sm-12" style="margin:10px 0">
@@ -28,14 +28,13 @@
                             <a asp-action="Index" asp-route-blogId="@a.BlogID">@a.Name</a>
                         </div>
                     }
-
                 </div>
                 <nav page-model="@Model.PagingInfo"
                      page-action="List"
                      page-url-category="@Model.CurrentCategory"
                      page-pre-class="newer-posts"
                      page-next-class="older-posts"
-                     class="pagination">
+                     class="pagination" style="margin-left:20px;margin-top:20px">
                 </nav>
                 @*<div page-model="@Model.PagingInfo"
                          page-action="List"
