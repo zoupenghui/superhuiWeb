@@ -12,15 +12,15 @@
             <td>@f["name"]</td>
             <td>@string.Format("{0}", Math.Round(double.Parse((string)f["info"]["size"]) / 1024 / 1024, 2))</td>
             <td>@f["info"]["lastModified"]</td>
-            <th><a href=@string.Format("http://10.128.184.56:8080/api/download{0}", f["path"])>download</a></th>
+            <th><a href=@string.Format("/api/download{0}", f["path"])>download</a></th>
         </tr>
         @*<tr>
             <td>uat</td>
-            <th><a href="http://10.128.184.56:8080/api/download/packages/app-release-uat.apk">download</a></th>
+            <th><a href="/api/download/packages/app-release-uat.apk">download</a></th>
         </tr>
         <tr>
             <td>product</td>
-            <th><a href="http://10.128.184.56:8080/api/download/packages/app-release-product.apk">download</a></th>
+            <th><a href="/api/download/packages/app-release-product.apk">download</a></th>
         </tr>*@
     }
 

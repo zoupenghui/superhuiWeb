@@ -25,7 +25,7 @@ namespace Superhui.Web.Areas.Racs.Controllers
         // GET: Blog
         public async Task<ActionResult> Index()
         {
-            var http = NetworkRequest.CreateHttp("http://localhost:58221/api/fileInfo/packages");
+            var http = NetworkRequest.CreateHttp("http://localhost:8088/api/fileInfo/packages");
             var bytes = await http.GetAsync();
             string fileInfoStr = Encoding.UTF8.GetString(bytes);
             JObject o = JObject.Parse(fileInfoStr);
