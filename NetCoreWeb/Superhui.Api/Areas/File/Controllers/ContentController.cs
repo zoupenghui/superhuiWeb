@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Superhui.Api.Areas.File.Controllers
 {
-    [Route("[Area]/api/[controller]")]
+    [Route("api/[Area]/[controller]")]
     [Area("File")]
     [EnableCors("AllowSepecificOrigins")]
     public class ContentController : Controller

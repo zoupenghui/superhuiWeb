@@ -14,7 +14,7 @@ namespace Superhui.Api.Areas.File.Controllers
     /// <summary>
     /// get file tree infomation
     /// </summary>
-    [Route("[Area]/api/[controller]")]
+    [Route("api/[Area]/[controller]")]
     [Area("File")]
     [EnableCors("AllowSepecificOrigins")]
     public class FileInfoController : Controller
@@ -36,16 +36,19 @@ namespace Superhui.Api.Areas.File.Controllers
             }
             fileName = $"/{fileName.Trim('/')}";
             IDirectoryContents dirContents = _fileProvider.GetDirectoryContents(fileName);
-            if (dirContents.Count() <= 0)
-            {
-                return "";
-            }
+            // if (dirContents.Count() <= 0)
+            // {
+            //     return "{}";
+            // }
             strBuilder.Append("{");
             strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
             strBuilder.Append($"\"path\":\"{fileName}\",");
             strBuilder.Append("\"children\":[");
-            Render($"{fileName}");
-            strBuilder.Remove(strBuilder.Length - 1, 1);
+            if (dirContents.Count() > 0)
+            {
+                Render($"{fileName}");
+                strBuilder.Remove(strBuilder.Length - 1, 1);
+            }
             strBuilder.Append("]");
             strBuilder.Append("}");
             //JObject o = JObject.Parse(strBuilder.ToString());
@@ -67,11 +70,16 @@ namespace Superhui.Api.Areas.File.Controllers
                 {
                     strBuilder.Append($"\"path\":\"{subPath.TrimEnd('/')}/{fileInfo.Name}\",");
                     strBuilder.Append("\"children\":[");
+                    // if()
                     // windows系统独有的路径分割符\
                     // Render($@"{subPath}\\{fileInfo.Name}".TrimStart('\\'));
                     // windows&linux都可识别/路径分割符
-                    Render($@"{subPath.TrimEnd('/')}/{fileInfo.Name}".TrimStart('\\'));
-                    strBuilder.Remove(strBuilder.Length - 1, 1);
+                    string subRootPath = $@"{subPath.TrimEnd('/')}/{fileInfo.Name}".TrimStart('\\');
+                    if(_fileProvider.GetDirectoryContents(subRootPath).Count() > 0)
+                    {
+                        Render(subRootPath);
+                        strBuilder.Remove(strBuilder.Length - 1, 1);
+                    }
                     strBuilder.Append("]}");
                     strBuilder.Append(",");
                 }

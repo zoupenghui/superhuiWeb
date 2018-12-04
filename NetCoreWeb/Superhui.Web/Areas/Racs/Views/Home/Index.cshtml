@@ -2,7 +2,7 @@
 <h2>Android packages download</h2>
 <table class="table table-bordered table-striped">
     <tr>
-        <th>环境</th>
+        <th>名称</th>
         <th>大小</th>
         <th>修改时间</th>
         <th>操作</th>
@@ -12,7 +12,7 @@
             <td>@f["name"]</td>
             <td>@string.Format("{0}", Math.Round(double.Parse((string)f["info"]["size"]) / 1024 / 1024, 2))</td>
             <td>@f["info"]["lastModified"]</td>
-            <th><a href=@string.Format("/api/download{0}", f["path"])>download</a></th>
+            <th><a href=@string.Format("http://localhost:5000/api/file/download{0}", f["path"])>download</a></th>
         </tr>
         @*<tr>
             <td>uat</td>

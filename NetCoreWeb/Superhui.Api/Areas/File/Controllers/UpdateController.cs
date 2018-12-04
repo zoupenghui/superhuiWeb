@@ -15,7 +15,7 @@ namespace Superhui.Api.Areas.File.Controllers
     /// <summary>
     /// Update file controller. only support string file type
     /// </summary>
-    [Route("[Area]/api/[controller]")]
+    [Route("api/[Area]/[controller]")]
     [Area("File")]
     [EnableCors("AllowSepecificOrigins")]
     public class UpdateController : Controller
