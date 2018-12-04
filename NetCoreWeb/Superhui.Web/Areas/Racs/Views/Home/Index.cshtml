@@ -12,7 +12,7 @@
             <td>@f["name"]</td>
             <td>@string.Format("{0}", Math.Round(double.Parse((string)f["info"]["size"]) / 1024 / 1024, 2))</td>
             <td>@f["info"]["lastModified"]</td>
-            <th><a href=@string.Format("http://localhost:5000/api/file/download{0}", f["path"])>download</a></th>
+            <th><a href=@string.Format("/api/file/download{0}", f["path"])>download</a></th>
         </tr>
         @*<tr>
             <td>uat</td>
