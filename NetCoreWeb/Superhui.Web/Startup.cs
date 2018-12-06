@@ -63,13 +63,15 @@ namespace Superhui.Web
             app.UseAuthentication();
             app.UseMvc(routes =>
             {
-                // routes.MapRoute(name: "areas", template: "{area:exists=racs}/{controller=Home}/{action=Index}");
-                routes.MapRoute(name: "areas", template: "{area:exists}/{controller=Home}/{action=Index}");
+                routes.MapRoute(
+                    name: "docs",
+                    template: "docs/{*path}",
+                    defaults: new { controller = "File", action = "Index", area = "Docs" });
                 routes.MapRoute(
                     name: "religion",
                     template: "religion/{*catchall}",
                     defaults: new { controller = "Retransmit", action = "Index", area = "Racs" });
-                //routes.MapRoute(name: "areas", template: "{area:exists}/{controller=Home}/{action=Index}");
+                routes.MapRoute(name: "areas", template: "{area:exists}/{controller=Home}/{action=Index}");
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

@@ -27,7 +27,12 @@ namespace Superhui.Web.Areas.Docs.Controllers
         // GET: Blog
         public async Task<ActionResult> Index(string path = "")
         {
-            var nr = NetworkRequest.CreateHttp($"http://localhost:58221/file/api/content/{path.TrimStart('/')}");
+            path = path.Trim('/');
+            if(!path.EndsWith(".md"))
+            {
+                path += ".md";
+            }
+            var nr = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/content/{path}");
             string fContent = await nr.GetAsync<string>();
             return View((object)fContent);
         }

@@ -20,6 +20,7 @@ namespace Superhui.Api.Areas.File.Controllers
         public ContentController(IFileProvider fileProvider, ILogger<ContentController> log)
         {
             _fileProvider = fileProvider;
+            // _fileProvider = new PhysicalFileProvider("/home/zph/note/");
             logger = log;
         }
 
