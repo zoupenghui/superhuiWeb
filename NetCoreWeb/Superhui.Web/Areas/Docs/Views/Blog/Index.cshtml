@@ -24,15 +24,15 @@
     </environment>*@
     <style>
         .editormd-html-preview {
-            width: 750px;
+            width: 1000px;
         }
         .editormd-preview-container, .editormd-html-preview {
              margin:-20px;
         }
 
         #sidebar {
+            float: left;
             width: 280px;
-            position: fixed;
             height: 100%;
             margin-right: 20px;
             padding-bottom: 0px;
@@ -41,42 +41,30 @@
         }
 
         #content {
+            float: left
             padding-left: 300px;
             margin-left: 50px;
             margin-top:20px;
             margin-right: 0px;
         }
         .btn {
-            display: inline-block;
+            display: block;
+            width: 200px;
             padding: 6px 12px;
             margin-bottom: 0;
             font-size: 14px;
             font-weight: normal;
-            line-height: 1.42857143;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;
-            -ms-touch-action: manipulation;
-            touch-action: manipulation;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            background-image: none;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
-        .btn-block {
-            display: block;
-            width: 100%;
         }
         .btn-primary {
+            display: block;
+            width: 200px;
             color: #fff;
             background-color: #337ab7;
             border-color: #2e6da4;
         }
         .btn-default {
+            display: block;
+            width: 200px;
             color: #333;
             background-color: #fff;
             border-color: #ccc;
@@ -118,9 +106,8 @@
         <div style="margin-top:30px">
             @foreach (Blog blog in Model.AllRelatedBlogs)
             {
-                <a class="btn btn-block
-              @(blog == ViewBag.SelectedBlog ? "btn-primary": "btn-default")"
-                   style="text-decoration:none; width:80%;margin:10px auto 10px auto;"
+                <a class="@(blog == ViewBag.SelectedBlog ? "btn-primary": "btn-default")"
+                   style="text-decoration:none; width:200px;margin:10px auto 10px auto;"
                    asp-action="Index"
                    asp-controller="Blog"
                    asp-route-blogId=@blog.BlogID>@blog.Name</a>
