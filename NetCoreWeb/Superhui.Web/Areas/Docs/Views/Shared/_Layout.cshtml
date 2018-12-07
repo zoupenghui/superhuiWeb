@@ -8,7 +8,6 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <title>Blog Template for Bootstrap</title>
-
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/node_modules/bootstrap/dist/css/bootstrap.css" />
         <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> -->
@@ -121,6 +120,7 @@
       }
       
     </style>
+    @RenderSection("Links", required: false)
   </head>
 
   <body>
@@ -208,23 +208,16 @@
           </h3> -->
 
           <div class="blog-post">
-            <!-- <h2 class="blog-post-title">Sample blog post</h2>
-            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-
-            <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-            <hr> -->
-            @RenderBody()
-          </div><!-- /.blog-post -->
-          <!-- <div>
-            @RenderBody()
-            <hr />
-          </div> -->
+            <div id="blog-content" class='col-md-12, vs'>
+              @RenderBody()
+            </div>
+          </div>
           <nav class="blog-pagination">
             <a class="btn btn-outline-primary" href="#">Older</a>
             <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
           </nav>
 
-        </div><!-- /.blog-main -->
+        </div>
 
         <aside class="col-md-4 blog-sidebar">
           <div class="p-3 mb-3 bg-light rounded">

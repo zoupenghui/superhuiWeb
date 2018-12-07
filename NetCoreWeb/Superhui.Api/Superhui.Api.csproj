@@ -19,7 +19,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Superhui.AspNetCore\Superhui.AspNetCore.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Controllers\HomeController %28副本%29.cs" />
-  </ItemGroup>
 </Project>
