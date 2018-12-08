@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <meta name="author" content="zph">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
 
-    <title>Blog Template for Bootstrap</title>
+    <title>zph-blog</title>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/node_modules/bootstrap/dist/css/bootstrap.css" />
         <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> -->
@@ -22,70 +22,15 @@
             crossorigin="anonymous"
             asp-fallback-href="~/lib/node_modules/bootstrap/dist/css/bootstrap.min.css"
             asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
 
     <!-- Custom styles for this template -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet"> -->
     <link href="~/css/blog.css" rel="stylesheet">
-    <!-- markdown -->
-    <!-- <link rel="stylesheet" href="~/lib/editor-md/examples/css/style.css" /> -->
     <link rel="stylesheet" href="~/lib/editor-md/css/editormd.preview.css" />
-    <!-- <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" /> -->
     <style>
-      .editormd-html-preview {
-          width:100%;            
-          /* width:200px;             */
-      }
-      .editormd-preview-container, .editormd-html-preview {
-            margin:0px;
-      }
-
-      #content {
-          /* padding-left: 300px; */
-          /* margin-left: 50px; */
-          /* margin-right: 0px; */
-          /* margin-top:20px; */
-          background-color: antiquewhite;
-          /* width: 50%; */
-          /* margin: 0 auto; */
-          
-      }
-      .btn {
-          display: inline-block;
-          padding: 6px 12px;
-          margin-bottom: 0;
-          font-size: 14px;
-          font-weight: normal;
-          line-height: 1.42857143;
-          text-align: center;
-          white-space: nowrap;
-          vertical-align: middle;
-          -ms-touch-action: manipulation;
-          touch-action: manipulation;
-          cursor: pointer;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          background-image: none;
-          border: 1px solid transparent;
-          border-radius: 4px;
-      }
-      .btn-block {
-          display: block;
-          width: 100%;
-      }
-      .btn-primary {
-          color: #fff;
-          background-color: #337ab7;
-          border-color: #2e6da4;
-      }
-      .btn-default {
-          color: #333;
-          background-color: #fff;
-          border-color: #ccc;
-      }
+      span {font-family: 'Open Sans'; color: purple}
       #back_to_top {
           /*display: none;*/
           position: fixed;
@@ -255,33 +200,13 @@
 
       </div><!-- /.row -->
 
-    </main><!-- /.container -->
-    <!-- <div class="container body-content">
-        @RenderBody()
-        <hr />
-    </div> -->
+    </main> 
     <footer class="blog-footer">
-      <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">mdo</a>.</p>
+      <p>create by zoupenghui. <a href="/home/about/">Contact</a> me.</p>
       <p>
         <a href="#">Back to top</a>
       </p>
     </footer>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/vendor/holder.min.js"></script> -->
-    <!-- <script>
-      Holder.addTheme('thumb', {
-        bg: '#55595c',
-        fg: '#eceeef',
-        text: 'Thumbnail'
-      });
-    </script> -->
     <environment include="Development">
         <!-- 2.2.0 -->
         <!-- <script src="~/lib/jquery/dist/jquery.js"></script> -->
