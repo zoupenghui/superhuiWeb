@@ -28,39 +28,82 @@ namespace Superhui.Api.Areas.File.Controllers
 
         // GET api/values
         [HttpGet("{*fileName}")]
-        public string Get(string fileName = "" )
+        public string Get(string fileName = "")
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 fileName = "";
             }
             fileName = $"/{fileName.Trim('/')}";
-            IDirectoryContents dirContents = _fileProvider.GetDirectoryContents(fileName);
-            // if (dirContents.Count() <= 0)
+            var rootFileInfo = _fileProvider.GetFileInfo(fileName);
+            if (rootFileInfo != null && rootFileInfo.Exists)
+            {
+                if (rootFileInfo.IsDirectory)
+                {
+                    IDirectoryContents dirContents = _fileProvider.GetDirectoryContents(fileName);
+                    if (!dirContents.Exists)
+                    {
+                        return "{}";
+                    }
+                    strBuilder.Append("{");
+                    strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
+                    strBuilder.Append($"\"path\":\"{fileName}\",");
+                    strBuilder.Append("\"children\":[");
+                    if (dirContents.Count() > 0)
+                    {
+                        Render($"{fileName}");
+                        strBuilder.Remove(strBuilder.Length - 1, 1);
+                    }
+                    strBuilder.Append("]");
+                    strBuilder.Append("}");
+                }
+                else
+                {
+                    strBuilder.Append("{");
+                    strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
+                    strBuilder.Append($"\"path\":\"{fileName}\",");
+                    strBuilder.Append($"\"info\":");
+                    strBuilder.Append("{");
+                    strBuilder.Append($"\"lastModified\":\"{rootFileInfo.LastModified.LocalDateTime}\",");
+                    strBuilder.Append($"\"size\":\"{rootFileInfo.Length}\"");
+                    strBuilder.Append("}");
+                    strBuilder.Append("}");
+                }
+            }
+            else
+            {
+                strBuilder.Append("{}");
+            }
+            // IDirectoryContents dirContents = _fileProvider.GetDirectoryContents(fileName);
+            // if (!dirContents.Exists)
             // {
             //     return "{}";
             // }
-            strBuilder.Append("{");
-            strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
-            strBuilder.Append($"\"path\":\"{fileName}\",");
-            strBuilder.Append("\"children\":[");
-            if (dirContents.Count() > 0)
-            {
-                Render($"{fileName}");
-                strBuilder.Remove(strBuilder.Length - 1, 1);
-            }
-            strBuilder.Append("]");
+            // // if (dirContents.Count() <= 0)
+            // // {
+            // //     return "{}";
+            // // }
+            // strBuilder.Append("{");
+            // strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
+            // strBuilder.Append($"\"path\":\"{fileName}\",");
+            // if (dirContents.Count() > 0)
+            // {
+            //     strBuilder.Append("\"children\":[");
+            //     Render($"{fileName}");
+            //     strBuilder.Remove(strBuilder.Length - 1, 1);
+            //     strBuilder.Append("]");
+            // }
             // else
             // {
             //     var fileInfo = _fileProvider.GetFileInfo(fileName);
             //     strBuilder.Append($"\"info\":");
             //     strBuilder.Append("{");
-            //     // strBuilder.Append($"\"lastModified\":\"{fileInfo.LastModified.LocalDateTime}\",");
+            //     strBuilder.Append($"\"lastModified\":\"{fileInfo.LastModified.LocalDateTime}\",");
             //     strBuilder.Append($"\"size\":\"{fileInfo.Length}\"");
             //     strBuilder.Append("}");
             //     strBuilder.Append("}");
             // }
-            strBuilder.Append("}");
+            // strBuilder.Append("}");
             //JObject o = JObject.Parse(strBuilder.ToString());
             //JArray categories = (JArray)o["children"][1]["children"];
             //JArray categories2 = (JArray)o.SelectToken("children[1].children");
@@ -85,7 +128,7 @@ namespace Superhui.Api.Areas.File.Controllers
                     // Render($@"{subPath}\\{fileInfo.Name}".TrimStart('\\'));
                     // windows&linux都可识别/路径分割符
                     string subRootPath = $@"{subPath.TrimEnd('/')}/{fileInfo.Name}".TrimStart('\\');
-                    if(_fileProvider.GetDirectoryContents(subRootPath).Count() > 0)
+                    if (_fileProvider.GetDirectoryContents(subRootPath).Count() > 0)
                     {
                         Render(subRootPath);
                         strBuilder.Remove(strBuilder.Length - 1, 1);
