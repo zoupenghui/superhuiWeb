@@ -50,6 +50,16 @@ namespace Superhui.Api.Areas.File.Controllers
                 strBuilder.Remove(strBuilder.Length - 1, 1);
             }
             strBuilder.Append("]");
+            // else
+            // {
+            //     var fileInfo = _fileProvider.GetFileInfo(fileName);
+            //     strBuilder.Append($"\"info\":");
+            //     strBuilder.Append("{");
+            //     // strBuilder.Append($"\"lastModified\":\"{fileInfo.LastModified.LocalDateTime}\",");
+            //     strBuilder.Append($"\"size\":\"{fileInfo.Length}\"");
+            //     strBuilder.Append("}");
+            //     strBuilder.Append("}");
+            // }
             strBuilder.Append("}");
             //JObject o = JObject.Parse(strBuilder.ToString());
             //JArray categories = (JArray)o["children"][1]["children"];
