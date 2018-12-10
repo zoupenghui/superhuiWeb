@@ -3,9 +3,12 @@
 <div>
   <textarea style="display:none" id="mark-content">@Model</textarea>
 </div>
-<div>
-  @Model
-</div>
+<!-- @section Catalog{
+  @foreach (var f in (Newtonsoft.Json.Linq.JArray)ViewData["Catalogue"]) {
+    <li><a href="#">@f["name"]</a></li>
+  }
+} -->
+
 @section Links{
   <link rel="stylesheet" href="~/css/mark.css" />
 }

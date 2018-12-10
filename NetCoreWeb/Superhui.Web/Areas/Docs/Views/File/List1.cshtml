@@ -1,22 +1,8 @@
-﻿@model String
+﻿@model Newtonsoft.Json.Linq.JArray
 
-<!-- <div>
-  <textarea style="display:none" id="mark-content">@Model</textarea>
-</div> -->
-<div>
-  @Model
-</div>
-@section Links{
-  <link rel="stylesheet" href="~/css/mark.css" />
+
+@section Catalog{
+  @foreach (var f in Model) {
+    <li><a href="#">@f["name"]</a></li>
+  }
 }
-
-@section Scripts{
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    $(document).ready(function(){
-      document.getElementById('blog-content').innerHTML =
-      marked($("#mark-content").val());
-    });
-  </script>
-}
-
