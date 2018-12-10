@@ -36,14 +36,14 @@ namespace Superhui.Web.Areas.Docs.Controllers
             string fContent = await nr.GetAsync<string>();
             return View((object)fContent);
         }
-        public async Task<ActionResult> List(string path = "")
+        public async Task<ActionResult> List1(string path = "")
         {
             path = path.Trim('/');
             // if(!path.EndsWith(".md"))
             // {
             //     path += ".md";
             // }
-            var nr = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/{path}");
+            var nr = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/note/linux/");
             string fContent = await nr.GetAsync<string>();
             return View((object)fContent);
         }

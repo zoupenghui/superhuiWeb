@@ -67,41 +67,11 @@ namespace Superhui.Api.Areas.File.Controllers
             {
                 strBuilder.Append("{}");
             }
-            // IDirectoryContents dirContents = _fileProvider.GetDirectoryContents(fileName);
-            // if (!dirContents.Exists)
-            // {
-            //     return "{}";
-            // }
-            // // if (dirContents.Count() <= 0)
-            // // {
-            // //     return "{}";
-            // // }
-            // strBuilder.Append("{");
-            // strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
-            // strBuilder.Append($"\"path\":\"{fileName}\",");
-            // if (dirContents.Count() > 0)
-            // {
-            //     strBuilder.Append("\"children\":[");
-            //     Render($"{fileName}");
-            //     strBuilder.Remove(strBuilder.Length - 1, 1);
-            //     strBuilder.Append("]");
-            // }
-            // else
-            // {
-            //     var fileInfo = _fileProvider.GetFileInfo(fileName);
-            //     strBuilder.Append($"\"info\":");
-            //     strBuilder.Append("{");
-            //     strBuilder.Append($"\"lastModified\":\"{fileInfo.LastModified.LocalDateTime}\",");
-            //     strBuilder.Append($"\"size\":\"{fileInfo.Length}\"");
-            //     strBuilder.Append("}");
-            //     strBuilder.Append("}");
-            // }
-            // strBuilder.Append("}");
+            
             //JObject o = JObject.Parse(strBuilder.ToString());
             //JArray categories = (JArray)o["children"][1]["children"];
             //JArray categories2 = (JArray)o.SelectToken("children[1].children");
             return strBuilder.ToString();
-
         }
 
         private void Render(string subPath)
