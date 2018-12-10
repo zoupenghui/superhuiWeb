@@ -36,39 +36,32 @@ namespace Superhui.Api.Areas.File.Controllers
             }
             fileName = $"/{fileName.Trim('/')}";
             var rootFileInfo = _fileProvider.GetFileInfo(fileName);
-            if (rootFileInfo != null && rootFileInfo.Exists)
+            IDirectoryContents dirContents = _fileProvider.GetDirectoryContents(fileName);
+            if (rootFileInfo != null && rootFileInfo.Exists && !rootFileInfo.IsDirectory)
             {
-                if (rootFileInfo.IsDirectory)
+                strBuilder.Append("{");
+                strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
+                strBuilder.Append($"\"path\":\"{fileName}\",");
+                strBuilder.Append($"\"info\":");
+                strBuilder.Append("{");
+                strBuilder.Append($"\"lastModified\":\"{rootFileInfo.LastModified.LocalDateTime}\",");
+                strBuilder.Append($"\"size\":\"{rootFileInfo.Length}\"");
+                strBuilder.Append("}");
+                strBuilder.Append("}");
+            }
+            else if (dirContents != null && dirContents.Exists)
+            {
+                strBuilder.Append("{");
+                strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
+                strBuilder.Append($"\"path\":\"{fileName}\",");
+                strBuilder.Append("\"children\":[");
+                if (dirContents.Count() > 0)
                 {
-                    IDirectoryContents dirContents = _fileProvider.GetDirectoryContents(fileName);
-                    if (!dirContents.Exists)
-                    {
-                        return "{}";
-                    }
-                    strBuilder.Append("{");
-                    strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
-                    strBuilder.Append($"\"path\":\"{fileName}\",");
-                    strBuilder.Append("\"children\":[");
-                    if (dirContents.Count() > 0)
-                    {
-                        Render($"{fileName}");
-                        strBuilder.Remove(strBuilder.Length - 1, 1);
-                    }
-                    strBuilder.Append("]");
-                    strBuilder.Append("}");
+                    Render($"{fileName}");
+                    strBuilder.Remove(strBuilder.Length - 1, 1);
                 }
-                else
-                {
-                    strBuilder.Append("{");
-                    strBuilder.Append($"\"name\":\"{fileName.Trim('/').Split('/').LastOrDefault()}\",");
-                    strBuilder.Append($"\"path\":\"{fileName}\",");
-                    strBuilder.Append($"\"info\":");
-                    strBuilder.Append("{");
-                    strBuilder.Append($"\"lastModified\":\"{rootFileInfo.LastModified.LocalDateTime}\",");
-                    strBuilder.Append($"\"size\":\"{rootFileInfo.Length}\"");
-                    strBuilder.Append("}");
-                    strBuilder.Append("}");
-                }
+                strBuilder.Append("]");
+                strBuilder.Append("}");
             }
             else
             {
