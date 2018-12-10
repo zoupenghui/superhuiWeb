@@ -7,9 +7,7 @@
 @section Catalog{
   @foreach (var f in (Newtonsoft.Json.Linq.JArray)ViewBag.Catalogue) {
     <li>
-      <!-- <a hrefs=@string.Format("/docs{0}", @f["path"]) onclick="refresh(this)">@f["name"]</a> -->
-      <a hrefs=@string.Format("{0}", @f["path"]) onclick="refresh(this)">@f["name"]</a>
-
+      <a href="javascript:void(0);" path=@f["path"] onclick="getDoc(this)">@f["name"].ToString().Replace(".md", "")</a>
     </li>
   }
 }
@@ -27,7 +25,7 @@
     });
 
     <!-- xhr -->
-    var xhr = new XMLHttpRequest();
+    @*var xhr = new XMLHttpRequest();
     xhr.open('GET', "/api/file/fileInfo/note/racs");
     xhr.responseType = 'json';
     xhr.onload = function() {
@@ -36,10 +34,10 @@
     xhr.onerror = function() {
       console.log("Oops, error");
     };
-    xhr.send();
+    xhr.send(); *@
 
     <!-- fetch -->
-    fetch("/api/file/fileInfo/note/racs").then(function(response) {
+    @*fetch("/api/file/fileInfo/note/racs").then(function(response) {
       return response.json();
     }).then(function(data) {
       console.log(data);
@@ -49,29 +47,20 @@
       }
     }).catch(function(e) {
       console.log("Oops, error");
-    });
+    });*@
 
-    fetch("/api/file/content/note/linux/config.md").then(function(response) {
-      return response.text();
-    }).then(function(data) {
-      console.log(data);
-      document.getElementById('blog-content').innerHTML =
-      marked(data);
-    }).catch(function(e) {
-      console.log("Oops, error");
-    });
+    function getDoc (e) {
+      const path = $(e).attr('path')
+      const newUrl = `${window.location.protocol}\/\/${document.domain}/docs${path}`;
+      window.history.replaceState({}, '', newUrl);
 
-    function refresh (url) {
-      console.log($(url).attr('hrefs'))
-      const uri = $(url).attr('hrefs')
-      fetch("/api/file/content" + uri).then(function(response) {
+      fetch("/api/file/content" + path).then(function(response) {
         return response.text();
       }).then(function(data) {
-        console.log(data);
         document.getElementById('blog-content').innerHTML =
         marked(data);
       }).catch(function(e) {
-        console.log("Oops, error");
+        console.log("fetch blog content error!");
       });
     }
   </script>

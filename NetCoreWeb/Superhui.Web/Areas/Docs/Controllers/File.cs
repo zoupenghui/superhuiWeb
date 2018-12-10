@@ -34,10 +34,10 @@ namespace Superhui.Web.Areas.Docs.Controllers
                  path += ".md";
              }
              var cataloguePath = path.Substring(0, path.LastIndexOf('/') + 1);
-             var nr = NetworkRequest.CreateHttp($"http://192.168.100.1/api/file/content/{path}");
+             var nr = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/content/{path}");
              string fContent = await nr.GetAsync<string>();
 
-             var catalogueInfoRequest = NetworkRequest.CreateHttp($"http://192.168.100.1/api/file/fileInfo/{cataloguePath}");
+             var catalogueInfoRequest = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/{cataloguePath}");
              string catalogueInfo = await catalogueInfoRequest.GetAsync<string>();
              JObject o = JObject.Parse(catalogueInfo);
              JArray fileInfoArray = (JArray)o.SelectToken("children");
