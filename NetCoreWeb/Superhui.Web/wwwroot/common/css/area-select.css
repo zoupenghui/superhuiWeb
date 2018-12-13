@@ -58,9 +58,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 .areaselect-content.areaselect-prev { -webkit-transform: translate(0, 0); transform: translate(0, 0); }
 .areaselect-content > .areaselect-item { display: block; height: inherit; width: 100%; /* for old android */
 -webkit-box-flex: 0; -webkit-flex: 0 0 100%; -ms-flex: 0 0 100%; flex: 0 0 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; background-color: #FFF; }
-.areaselect-content > .areaselect-item::-webkit-scrollbar {
- width: 0;
-}
+.areaselect-content > .areaselect-item::-webkit-scrollbar { width: 0; }
 .areaselect-content > .areaselect-item:nth-child(2n) { /*background-color: #F5F5F5;*/ }
 .areaselect-item-box { width: 100%; height: inherit; display: block; /*padding: 0 .4rem;*/ }
 .areaselect-item-box > a { color: #333; font-size: .26rem; height: 40px; line-height: 40px; overflow: hidden; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; width: 100%; position: relative; z-index: 1; }

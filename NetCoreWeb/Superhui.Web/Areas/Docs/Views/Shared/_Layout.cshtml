@@ -84,7 +84,7 @@
           </div>
         </div>
       </header>
-
+      <input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
           <a class="p-2 text-muted" href="#">World</a>
@@ -177,11 +177,12 @@
 
           <div class="p-3">
             <h4 class="font-italic">Elsewhere</h4>
-            <ol class="list-unstyled">
+            <!-- <ol class="list-unstyled">
               <li><a href="#">GitHub</a></li>
               <li><a href="#">Twitter</a></li>
               <li><a href="#">Facebook</a></li>
-            </ol>
+            </ol> -->
+            @RenderSection("CatalogTree", required: false)
           </div>
         </aside><!-- /.blog-sidebar -->
 
@@ -227,14 +228,14 @@
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <!-- 完整版 -->
-        <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <!-- 瘦身版 -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
           asp-fallback-src="~/lib/node_modules/jquery/dist/jquery.slim.min.js"
           asp-fallback-test="window.jQuery"
           integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
           crossorigin="anonymous">
-        </script>
+        </script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
           asp-fallback-src="~/lib/node_modules/popper.js/dist/popper.min.js"
           asp-fallback-test="window.jQuery"

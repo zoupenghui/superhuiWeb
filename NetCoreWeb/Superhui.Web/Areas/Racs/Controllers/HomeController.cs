@@ -32,5 +32,10 @@ namespace Superhui.Web.Areas.Racs.Controllers
             JArray fileInfoArray = (JArray)o.SelectToken("children");
             return View(fileInfoArray);
         }
+
+        public IActionResult Select()
+        {
+            return View();
+        }
     }
 }

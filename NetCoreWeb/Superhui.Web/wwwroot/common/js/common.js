@@ -74,6 +74,7 @@ function AjaxRequest(requestUrl, successFunc, requestData, requestType, errorFun
 	}
 	
 	var ajaxRequestConfig = {
+		// url:requestUrl,
 		url:requestUrl,
 		type:requestType,
 		dataType:"json",
