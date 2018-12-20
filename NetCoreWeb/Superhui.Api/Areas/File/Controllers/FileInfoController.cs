@@ -28,7 +28,7 @@ namespace Superhui.Api.Areas.File.Controllers
 
         // GET api/values
         [HttpGet("{*fileName}")]
-        public JsonResult Get(string fileName = "")
+        public string Get(string fileName = "")
         {
             // Response.ContentType = "application/json; charset=utf-8";
             if (string.IsNullOrWhiteSpace(fileName))
@@ -69,12 +69,12 @@ namespace Superhui.Api.Areas.File.Controllers
                 strBuilder.Append("{}");
             }
             
-            JObject o = JObject.Parse(strBuilder.ToString());
+            // JObject o = JObject.Parse(strBuilder.ToString());
             //JArray categories = (JArray)o["children"][1]["children"];
             //JArray categories2 = (JArray)o.SelectToken("children[1].children");
             // Response.ContentType="application/json";
-            // return strBuilder.ToString();
-            return Json(o);
+            return strBuilder.ToString();
+            // return Json(o);
         }
 
         private void Render(string subPath)
