@@ -11,6 +11,7 @@ var AreaSelectFixedValue = { province: '', provinceCode: '', city: '', cityCode:
 var AreaSelectedValue = { province: '', provinceCode: '', city: '', cityCode: '', districtOrCounty: '', districtOrCountyCode: '', townOrStreet: '', townOrStreetCode: '' };
 
 !function (window) {
+  console.log('777')
   "use strict";
   var $body = $(window.document.body);
   function AreaSelect(element, options) {

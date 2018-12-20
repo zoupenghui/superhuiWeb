@@ -23,34 +23,17 @@
             asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
+    <link rel="stylesheet" href="~/css/area-select.css" />
+    <!-- <link rel="stylesheet" href="~/common/css/area-select.css" /> -->
+
   </head>
 
   <body>
 
     <div class="container">
-      <input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+      <input type="text" class="areaselect-cell-input" style="width:100%" placeholder="请选择所在地区" readonly />
     </div>
 
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8 blog-main">
-
-          <div class="blog-post">
-            <div id="blog-content" class='col-md-12, vs'>
-              @RenderBody()
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </main> 
-    <footer class="blog-footer">
-      <p>create by zoupenghui. <a href="/home/about/">Contact</a> me.</p>
-      <p>
-        <a href="#">Back to top</a>
-      </p>
-    </footer>
     <environment include="Development">
         <!-- 2.2.0 -->
         <!-- <script src="~/lib/jquery/dist/jquery.js"></script> -->
@@ -90,7 +73,68 @@
         </script>
     
     </environment>
-    @RenderSection("Scripts", required: false)
+    <script src="~/js/area-select.js" asp-append-version="true"></script>
+    <script src="~/common/js/jquery.ydui.flexible.min.js" asp-append-version="true"></script>
+    <script src="~/common/js/jquery.ydui.min.js" asp-append-version="true"></script>
+    <script src="~/common/js/jquery.fullpage.min.js" asp-append-version="true"></script>
+    <script src="~/common/js/common.js" asp-append-version="true"></script>
+    <script>
+      function getAreaData(currentAreaCode, getAreaDataHandle) {
+        var requestData = {
+          adiv_cd: currentAreaCode
+        };
+        // AjaxRequest("/religion/api/rgoncd", getAreaDataHandle, requestData, "POST");
+        fetch("/religion/api/rgoncd", {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestData)
+        }).then(response => {
+          return response.json();
+        }).then(data => {
+           getAreaDataHandle(data);
+        }).catch((e) => {
+          console.log("fetch content error!");
+        });
+      }
 
+      function showAreaSelectedName() {
+        let showAreaName = "";
+        if(AreaSelectedValue.province && AreaSelectedValue.province != "请选择" && AreaSelectedValue.province != "全区") {
+          showAreaName += AreaSelectedValue.province;
+        }
+        if(AreaSelectedValue.city && AreaSelectedValue.city != "请选择" && AreaSelectedValue.city != "全区") {
+          showAreaName += "/" + AreaSelectedValue.city;
+        } 
+        if(AreaSelectedValue.districtOrCounty && AreaSelectedValue.districtOrCounty != "请选择" && AreaSelectedValue.districtOrCounty != "全区") {
+          showAreaName += "/" + AreaSelectedValue.districtOrCounty;
+        }
+        if(AreaSelectedValue.townOrStreet && AreaSelectedValue.townOrStreet != "请选择" && AreaSelectedValue.townOrStreet != "全区") {
+          showAreaName += "/" + AreaSelectedValue.townOrStreet;
+        } 
+        return showAreaName;
+      }
+
+      function selectedAreaChangedHandle() {
+      }
+
+      var areaSelectInputArray = $(".areaselect-cell-input");
+      $.each(areaSelectInputArray, function () {
+        var $this = $(this);
+        $this.areaSelect();
+        $this.val(showAreaSelectedName());
+        $this.on("click", function (event) {
+          event.stopPropagation();
+          $this.areaSelect("open");
+        });
+        $this.on("done.com.chinamworld.areaselect", function (ret) {
+          $.each(areaSelectInputArray, function () {
+            var $this = $(this);
+            $this.val(showAreaSelectedName());
+          });
+        });
+      });
+    </script>
   </body>
 </html>
