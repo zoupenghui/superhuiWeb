@@ -41,7 +41,9 @@ namespace Superhui.Web.Areas.Docs.Controllers
              string catalogueInfo = await catalogueInfoRequest.GetAsync<string>();
              JObject o = JObject.Parse(catalogueInfo);
              JArray fileInfoArray = (JArray)o.SelectToken("children");
+             // Console.WriteLine(fileInfoArray.ToString());
              ViewBag.Catalogue = fileInfoArray;
+             ViewBag.AllCatalogue = o;
              return View((object)fContent);
          }
     }

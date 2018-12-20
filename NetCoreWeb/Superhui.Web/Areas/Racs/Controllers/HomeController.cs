@@ -33,6 +33,7 @@ namespace Superhui.Web.Areas.Racs.Controllers
             return View(fileInfoArray);
         }
 
+        // area select
         public IActionResult Select()
         {
             return View();

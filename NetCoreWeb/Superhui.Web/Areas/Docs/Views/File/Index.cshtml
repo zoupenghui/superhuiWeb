@@ -9,6 +9,7 @@
       <a href="#" path=@f["path"] onclick="getDoc(this)">@f["name"].ToString().Replace(".md", "")</a>
     </li>
   }
+  @await Component.InvokeAsync("Catalog", ViewBag.AllCatalogue)
 }
 
 @section CatalogTree{
@@ -85,7 +86,7 @@
 
 @section Links{
   <link rel="stylesheet" href="~/css/mark.css" />
-  <link rel="stylesheet" href="~/common/css/area-select.css" />
+  <!-- <link rel="stylesheet" href="~/common/css/area-select.css" /> -->
   <style type="text/css">
       /*主页面样式*/
       .leftNav {
@@ -164,68 +165,11 @@
 @section Scripts{
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="~/js/area-select.js" asp-append-version="true"></script>
+  <!-- <script src="~/js/area-select.js" asp-append-version="true"></script>
   <script src="~/common/js/jquery.ydui.flexible.min.js" asp-append-version="true"></script>
   <script src="~/common/js/jquery.ydui.min.js" asp-append-version="true"></script>
   <script src="~/common/js/jquery.fullpage.min.js" asp-append-version="true"></script>
-  <script src="~/common/js/common.js" asp-append-version="true"></script>
-  <script>
-    function getAreaData(currentAreaCode, getAreaDataHandle) {
-      var requestData = {
-        adiv_cd: currentAreaCode
-      };
-      AjaxRequest("/religion/api/rgoncd", getAreaDataHandle, requestData, "POST");
-      @*fetch("/religion/api/rgoncd", {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestData)
-      }).then(function(response) {
-        return response.json();
-      }).then(function(data) {
-        <!-- getAreaDataHandle(data) -->
-      }).catch(function(e) {
-        console.log("fetch content error!");
-      });*@
-    }
-
-    function showAreaSelectedName() {
-      var showAreaName = "";
-      if (AreaSelectedValue.townOrStreet && AreaSelectedValue.townOrStreet != "请选择" && AreaSelectedValue.townOrStreet != "全区") {
-        showAreaName = AreaSelectedValue.townOrStreet;
-      } else if (AreaSelectedValue.districtOrCounty && AreaSelectedValue.districtOrCounty != "请选择" && AreaSelectedValue.districtOrCounty != "全区") {
-        showAreaName = AreaSelectedValue.districtOrCounty;
-      } else if (AreaSelectedValue.city && AreaSelectedValue.city != "请选择" && AreaSelectedValue.city != "全区") {
-        showAreaName = AreaSelectedValue.city;
-      } else if (AreaSelectedValue.province && AreaSelectedValue.province != "请选择" && AreaSelectedValue.province != "全区") {
-        showAreaName = AreaSelectedValue.province;
-      } else { }
-
-      return showAreaName;
-    }
-
-    function selectedAreaChangedHandle() {
-
-    }
-
-    var areaSelectInputArray = $(".areaselect-cell-input");
-    $.each(areaSelectInputArray, function () {
-      var $this = $(this);
-      $this.areaSelect();
-      $this.val(showAreaSelectedName());
-      $this.on("click", function (event) {
-        event.stopPropagation();
-        $this.areaSelect("open");
-      });
-      $this.on("done.com.chinamworld.areaselect", function (ret) {
-        $.each(areaSelectInputArray, function () {
-          var $this = $(this);
-          $this.val(showAreaSelectedName());
-        });
-      });
-    });
-  </script>
+  <script src="~/common/js/common.js" asp-append-version="true"></script> -->
   <script type="text/javascript">
     var treeSelected = null;//选中的树节点
     var imgPlus = new Image();
@@ -335,8 +279,5 @@
       });
     }
   </script>
-
-
-
 }
 
