@@ -18,59 +18,61 @@ namespace Superhui.Web.Areas.Docs.Conponents
         }
         public IViewComponentResult Invoke(object catalog)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (var item in (catalog as JObject)["children"]) {
-              if(item["children"] != null) {
-                
-              } else {
-                string t1 = "xyj";
-                string tmp = $"fuck{t1}";
-                string htmlCnt = $@"
-                <div class='treeNode'>
-                  <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{t1}</a>
-                </div>";
-              }
+            foreach (var item in (catalog as JObject)["children"])
+            {
+                if(item["children"] != null) {
+                    Render((JObject)item);
+                }
+                else
+                {
+                    string htmlLeafCnt = $@"
+                        <div class='treeNode'>
+                            <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{item["name"]}</a>
+                        </div>";
+                    sb.Append(htmlLeafCnt);
+                }
             }
-            return View(catalog);
+            // Render((JObject)catalog);
+            return View((object)sb.ToString());
         }
         private void Render (JObject node)
         {
-            // foreach (var item in (node as JObject)["children"]) {
-            //   if(item["children"] != null) {
-            //     string htmlCnt = $@"
-            //         <span>➭</span>
-            //         <span onclick='expandCollapse(this.parentNode)' class='category'>目录节点二</span>
-            //         <div class='treeSubnodesHidden'>
-            //             <div class='treeNode'>
-            //                 <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>叶子结点一</a>
-            //             </div>
-            //         </div>";
-            //     sb.Append(htmlCnt);
-            //   } else {
-            //     string htmlCnt = $@"
-            //         <div class='treeNode'>
-            //         <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{node["name"]}</a>
-            //         </div>";
-            //     sb.Append(htmlCnt);
-            //   }
-            // }  
+            if (node["children"] != null)
+            {
+                string htmlParentCnt = $@"
+                    <div class='treeNode'>
+                        <span>➭</span>
+                        <span onclick='expandCollapse(this.parentNode)' class='category'>{node["name"]}</span>
+                        <div class='treeSubnodesHidden'>";
+                sb.Append(htmlParentCnt);
+                // children node
+                foreach(var item in node["children"])
+                {
+                    if(item["children"] != null)
+                    {
+                        Render((JObject)item);
+                    } 
+                    else
+                    {
+                        string htmlLeafCnt = $@"
+                            <div class='treeNode'>
+                                <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{item["name"]}</a>
+                            </div>";
+                        sb.Append(htmlLeafCnt);
+                    }                   
+                }
+                // ===
+                sb.Append("</div></div>");
+            }
+            else
+            {
+                string htmlLeafCnt = $@"
+                    <div class='treeNode'>
+                        <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{node["name"]}</a>
+                    </div>";
+                sb.Append(htmlLeafCnt);
+            }
 
-            if(node["children"] != null) {
-            string htmlCnt = $@"
-                <span>➭</span>
-                <span onclick='expandCollapse(this.parentNode)' class='category'>目录节点二</span>
-                <div class='treeSubnodesHidden'>";
-            sb.Append(htmlCnt);
-            // node
-            // ===
-            sb.Append("</div>");
-            } else {
-            string htmlCnt = $@"
-                <div class='treeNode'>
-                <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{node["name"]}</a>
-                </div>";
-            sb.Append(htmlCnt);
-            }                   
         }
     }
 }

@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.Html
+@{ string catalogStr = ""; }
+<div>
+  @*@Model*@
+</div>
+<div class="leftNav">
+  <div id="samplesToc">
+    <div id="tree" style="top: 35px; left: 0px;" class="treeDiv">
+      <div id="treeRoot" onselectstart="return false" ondragstart="return false">
+        @functions {
+          public IHtmlContent nodeHelper(string htmlContent) {
+            return Html.Raw(htmlContent);
+          }
+          public string createNode(string htmlContent) {
+            foreach (var item in (@Model as JObject)["children"]) {
+              if(item["children"] != null) {
+                <div>children</div>
+              } else {
+                string t1 = "xyj";
+                string tmp = $"fuck{t1}";
+                string htmlCnt = $@"
+                <div class='treeNode'>
+                  <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{t1}</a>
+                </div>";
+                @nodeHelper(htmlCnt)
+              }
+            }
+            return "";
+          }
+        }
+        @foreach (var item in (@Model as JObject)["children"])
+        {
+          if(item["children"] != null) {
+            <div>children</div>
+          } else {
+            string t1 = "xyj";
+            string tmp = $"fuck{t1}";
+            string htmlCnt = $@"
+            <div class='treeNode'>
+              <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{t1}</a>
+            </div>";
+            @nodeHelper(htmlCnt)
+          }
+        }
+        <div class="treeNode">
+          <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点一</a>
+        </div>
+        <div class="treeNode">
+          <span>➭</span>
+          <!-- <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage"> -->
+          <span onclick="expandCollapse(this.parentNode)" class="category">目录节点一 </span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <span>➭</span>
+              <!-- <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage"> -->
+              <span onclick="expandCollapse(this.parentNode)" class="category">目录节点一子目录 </span>
+              <div class="treeSubnodesHidden">
+                <div class="treeNode">
+                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">二级叶子结点一</a>
+                </div>
+                <div class="treeNode">
+                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">二级叶子结点二</a>
+                </div>
+              </div>
+            </div>
+            <div class="treeNode">
+              <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点一</a>
+            </div>
+          </div>
+        </div>
+        <div class="treeNode">
+          <span>➭</span>
+          <!-- <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage"> -->
+          <span onclick="expandCollapse(this.parentNode)" class="category">\FF34</span>
+          <span onclick="expandCollapse(this.parentNode)" class="category">目录节点二</span>
+          <div class="treeSubnodesHidden">
+            <div class="treeNode">
+              <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点一</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
