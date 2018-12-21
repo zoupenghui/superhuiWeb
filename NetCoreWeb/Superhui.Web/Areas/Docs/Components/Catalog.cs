@@ -27,7 +27,9 @@ namespace Superhui.Web.Areas.Docs.Conponents
                 {
                     string htmlLeafCnt = $@"
                         <div class='treeNode'>
-                            <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{item["name"]}</a>
+                            <div class='ellipsis'>
+                                <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{item["name"]}</a>
+                            </div>
                         </div>";
                     sb.Append(htmlLeafCnt);
                 }
@@ -41,7 +43,7 @@ namespace Superhui.Web.Areas.Docs.Conponents
             {
                 string htmlParentCnt = $@"
                     <div class='treeNode'>
-                        <span>➭</span>
+                        <span onclick='expandCollapse(this.parentNode)' class='category'>➭</span>
                         <span onclick='expandCollapse(this.parentNode)' class='category'>{node["name"]}</span>
                         <div class='treeSubnodesHidden'>";
                 sb.Append(htmlParentCnt);
@@ -56,7 +58,9 @@ namespace Superhui.Web.Areas.Docs.Conponents
                     {
                         string htmlLeafCnt = $@"
                             <div class='treeNode'>
-                                <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{item["name"]}</a>
+                                <div class='ellipsis'>
+                                    <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{item["name"]}</a>
+                                </div>
                             </div>";
                         sb.Append(htmlLeafCnt);
                     }                   
@@ -68,7 +72,9 @@ namespace Superhui.Web.Areas.Docs.Conponents
             {
                 string htmlLeafCnt = $@"
                     <div class='treeNode'>
-                        <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{node["name"]}</a>
+                        <div class='ellipsis'>
+                            <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{node["name"]}</a>
+                        </div>
                     </div>";
                 sb.Append(htmlLeafCnt);
             }

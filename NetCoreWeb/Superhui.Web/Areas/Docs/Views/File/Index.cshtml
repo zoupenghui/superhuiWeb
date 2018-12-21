@@ -4,11 +4,11 @@
 </div>
 
 @section Catalog{
-  @foreach (var f in (Newtonsoft.Json.Linq.JArray)ViewBag.Catalogue) {
+  @*@foreach (var f in (Newtonsoft.Json.Linq.JArray)ViewBag.Catalogue) {
     <li>
       <a href="#" path=@f["path"] onclick="getDoc(this)">@f["name"].ToString().Replace(".md", "")</a>
     </li>
-  }
+  }*@
   @await Component.InvokeAsync("Catalog", ViewBag.AllCatalogue)
 }
 
@@ -86,42 +86,33 @@
 
 @section Links{
   <link rel="stylesheet" href="~/css/mark.css" />
-  <!-- <link rel="stylesheet" href="~/common/css/area-select.css" /> -->
   <style type="text/css">
       /*主页面样式*/
       .leftNav {
-        width: 180px;
-        height:500px;
-        border:#B9E0F7 1px solid;
-        margin-left: 1%;
-        margin-right: 1%;
+        // width: 180px;
+        // height:500px;
+        // border:#B9E0F7 1px solid;
+        // margin-left: 1%;
+        // margin-right: 1%;
     }
-    /*我的树样式表*/
     .treeDiv {
       color: #636363;
-      font-size: 14px;
       font-weight: normal;
       background-color: #fff;
       color: black;
       overflow: auto;
-      padding: 0 0 1em 0;
       overflow-x: hidden;
     }
-    
     .treeNode {
       white-space: nowrap;
       text-indent: -14px;
-      margin: 6px 2px 5px 14px;
+      margin-left: 14px;
     }
-    
     a.treeUnselected:hover, a.treeSelected:hover {
       background-color: #BFD9ED;
       text-decoration: none;
     }
-    
     a.treeUnselected, a.treeSelected {
-      color: black;
-      padding: 1px 3px 1px 0;
       text-decoration: none;
     }
     a.treeSelected {
@@ -130,7 +121,6 @@
     a.treeUnselected {
       background-color: transparent;
     }
-    
     .treeSubnodes {
       display: block;
     }
@@ -146,18 +136,20 @@
     .treeNode img.treeLinkImage {
       cursor: pointer;
     }
-    
-    div.treeNode a, div.treeNode span.apiRoot {
-      display: inline-block;
+    div.treeNode a {
       margin-left: 16px;
       text-indent: 0;
-      white-space: normal;
-      width: 95%;
-      word-wrap: break-word;
     }
-    
     div.treeNode span.category {
       cursor: pointer;
+    }
+    span.category {
+      color: #007bff
+    }
+    .ellipsis {
+      overflow: hidden;
+      text-overflow: ellipsis; 
+      white-space: nowrap;
     }
   </style>
 }
