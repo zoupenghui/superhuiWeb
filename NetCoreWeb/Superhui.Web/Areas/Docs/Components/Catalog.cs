@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Microsoft.AspNetCore.Html;
 
 namespace Superhui.Web.Areas.Docs.Conponents
 {
@@ -14,7 +16,6 @@ namespace Superhui.Web.Areas.Docs.Conponents
         StringBuilder sb = new StringBuilder();
         public Catalog()
         {
-            
         }
         public IViewComponentResult Invoke(object catalog)
         {
@@ -27,15 +28,12 @@ namespace Superhui.Web.Areas.Docs.Conponents
                 {
                     string htmlLeafCnt = $@"
                         <div class='treeNode'>
-                            <div class='ellipsis'>
-                                <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{item["name"]}</a>
-                            </div>
+                            <a href='javascript:void(0);' path={item["path"]} class='treeUnselected' onclick='clickAnchor(this);getDoc(this);'>{item["name"].ToString().Replace(".md", "")}</a>
                         </div>";
                     sb.Append(htmlLeafCnt);
                 }
             }
-            // Render((JObject)catalog);
-            return View((object)sb.ToString());
+            return new HtmlContentViewComponentResult(new HtmlString(sb.ToString()));
         }
         private void Render (JObject node)
         {
@@ -43,7 +41,7 @@ namespace Superhui.Web.Areas.Docs.Conponents
             {
                 string htmlParentCnt = $@"
                     <div class='treeNode'>
-                        <span onclick='expandCollapse(this.parentNode)' class='category'>➭</span>
+                        <span onclick='expandCollapse(this.parentNode)' class='cursor category'>➭</span>
                         <span onclick='expandCollapse(this.parentNode)' class='category'>{node["name"]}</span>
                         <div class='treeSubnodesHidden'>";
                 sb.Append(htmlParentCnt);
@@ -58,9 +56,7 @@ namespace Superhui.Web.Areas.Docs.Conponents
                     {
                         string htmlLeafCnt = $@"
                             <div class='treeNode'>
-                                <div class='ellipsis'>
-                                    <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{item["name"]}</a>
-                                </div>
+                                <a href='javascript:void(0);' path={item["path"]} class='treeUnselected' onclick='clickAnchor(this);getDoc(this);'>{item["name"].ToString().Replace(".md", "")}</a>
                             </div>";
                         sb.Append(htmlLeafCnt);
                     }                   
@@ -72,13 +68,10 @@ namespace Superhui.Web.Areas.Docs.Conponents
             {
                 string htmlLeafCnt = $@"
                     <div class='treeNode'>
-                        <div class='ellipsis'>
-                            <a href='#' class='treeUnselected' onclick='clickAnchor(this)'>{node["name"]}</a>
-                        </div>
+                        <a href='javascript:void(0);' path={node["path"]} class='treeUnselected' onclick='clickAnchor(this);getDoc(this);'>{node["name"].ToString().Replace(".md", "")}</a>
                     </div>";
                 sb.Append(htmlLeafCnt);
             }
-
         }
     }
 }

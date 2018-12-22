@@ -10,7 +10,6 @@
     <title>zph-blog</title>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/node_modules/bootstrap/dist/css/bootstrap.css" />
-        <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> -->
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
@@ -25,46 +24,12 @@
     <!-- Custom styles for this template -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet"> -->
     <link href="~/css/blog.css" rel="stylesheet">
-    <style>
-      #back_to_top {
-          /*display: none;*/
-          position: fixed;
-          height: 20px;
-          width: 70px;
-          bottom: 20px;
-          /* margin-left:850px; */
-          /* margin-left: auto; */
-          margin-right: 0;
-          margin-top: 0px;
-          color: rgb(255, 255, 255);
-          line-height: 20px;
-          text-align: center;
-          font-size: 10px;
-          background-color: rgb(170, 170, 170);
-          border-radius: 5px;
-          /* margin: 0 auto; */
-      }
-      #edit {
-          position: fixed;
-          height: 20px;
-          width: 70px;
-          bottom: 20px;
-          margin-left: 930px;
-          margin-top: 0px;
-          color: rgb(255, 255, 255);
-          line-height: 20px;
-          text-align: center;
-          font-size: 10px;
-          background-color: rgb(170, 170, 170);
-          border-radius: 5px;
-      }
-    </style>
     @RenderSection("Links", required: false)
   </head>
 
   <body>
     <div class="container">
-      <header class="blog-header py-3">
+      <!-- <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-4 pt-1">
             <a class="text-muted" href="#">Subscribe</a>
@@ -79,21 +44,12 @@
             <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
           </div>
         </div>
-      </header>
+      </header> -->
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-          <a class="p-2 text-muted" href="#">World</a>
-          <a class="p-2 text-muted" href="#">U.S.</a>
-          <a class="p-2 text-muted" href="#">Technology</a>
-          <a class="p-2 text-muted" href="#">Design</a>
-          <a class="p-2 text-muted" href="#">Culture</a>
-          <a class="p-2 text-muted" href="#">Business</a>
-          <a class="p-2 text-muted" href="#">Politics</a>
-          <a class="p-2 text-muted" href="#">Opinion</a>
-          <a class="p-2 text-muted" href="#">Science</a>
-          <a class="p-2 text-muted" href="#">Health</a>
-          <a class="p-2 text-muted" href="#">Style</a>
-          <a class="p-2 text-muted" href="#">Travel</a>
+          <!-- <a class="p-2 text-muted" href="#">World</a>
+          <a class="p-2 text-muted" href="#">Travel</a> -->
+          @RenderSection("Menu", required: false)
         </nav>
       </div>
 
@@ -150,8 +106,8 @@
             </div>
           </div>
           <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="#">Older</a>
-            <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+            <a class="btn btn-outline-primary" href="#">back top</a>
+            <!-- <a class="btn btn-outline-secondary disabled" href="#">Newer</a> -->
           </nav>
 
         </div>
@@ -159,7 +115,7 @@
         <aside class="col-md-4 blog-sidebar">
           <div class="p-3 mb-3 bg-light rounded">
             <h4 class="font-italic">About</h4>
-            <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <p class="mb-0"><em>a journey of one thousand miles begins with one step.</em></p>
           </div>
 
           <div class="p-3">
@@ -170,18 +126,18 @@
             </ol>
           </div>
 
-          <div class="p-3">
+          <!-- <div class="p-3">
             <h4 class="font-italic">Elsewhere</h4>
-            <!-- <ol class="list-unstyled">
+            <ol class="list-unstyled">
               <li><a href="#">GitHub</a></li>
               <li><a href="#">Twitter</a></li>
               <li><a href="#">Facebook</a></li>
-            </ol> -->
+            </ol>
             @RenderSection("CatalogTree", required: false)
-          </div>
-        </aside><!-- /.blog-sidebar -->
+          </div> -->
+        </aside>
 
-      </div><!-- /.row -->
+      </div>
 
     </main> 
     <footer class="blog-footer">
