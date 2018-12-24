@@ -10,7 +10,8 @@
 @section Menu {
   @foreach (var item in (ViewBag.JCategory as JObject)["children"] as JArray) {
     @if(item["children"] != null) {
-      <a class="p-2 text-muted" href="javascript:void(0);" path=@item["path"] onclick='getSubMenu(this);'>@item["name"]</a>
+      <a class="p-2 text-muted"
+        href="javascript:void(0);" path=@item["path"] onclick='getSubMenu(this);'>@item["name"]</a>
     }
   }
 }
@@ -91,7 +92,7 @@
   <script src="~/common/js/jquery.ydui.min.js" asp-append-version="true"></script>
   <script src="~/common/js/jquery.fullpage.min.js" asp-append-version="true"></script>
   <script src="~/common/js/common.js" asp-append-version="true"></script> -->
-  <script type="text/javascript">
+  <script>
     var treeSelected = null;//选中的树节点
     // var imgPlus = new Image();
     // imgPlus.src="../graphics/treenodeplus.gif";
