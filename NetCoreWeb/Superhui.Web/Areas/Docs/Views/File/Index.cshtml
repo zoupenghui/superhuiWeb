@@ -10,11 +10,20 @@
 @section Menu {
   @foreach (var item in (ViewBag.JCategory as JObject)["children"] as JArray) {
     @if(item["children"] != null) {
-      <a class="p-2 text-muted"
+      <a class="nav-item nav-link"
         href="javascript:void(0);" path=@item["path"] onclick='getSubMenu(this);'>@item["name"]</a>
     }
   }
 }
+
+@*@section Menu {
+  @foreach (var item in (ViewBag.JCategory as JObject)["children"] as JArray) {
+    @if(item["children"] != null) {
+      <a class="p-2 text-muted"
+        href="javascript:void(0);" path=@item["path"] onclick='getSubMenu(this);'>@item["name"]</a>
+    }
+  }
+}*@
 
 @section Links{
   <link rel="stylesheet" href="~/css/mark.css" />
