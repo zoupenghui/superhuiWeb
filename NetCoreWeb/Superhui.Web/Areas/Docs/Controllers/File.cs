@@ -29,6 +29,9 @@ namespace Superhui.Web.Areas.Docs.Controllers
          public async Task<ActionResult> Index(string path = "")
          {
              path = path.Trim('/');
+            //  if (path.EndsWith(".jpg") || path.EndsWith(".png") || path.EndsWith(".gif")) {
+            //      return Redirect($"http://localhost:5000/api/file/image/{path}");
+            //  }
              if(!path.EndsWith(".md"))
              {
                  path += ".md";
@@ -50,5 +53,17 @@ namespace Superhui.Web.Areas.Docs.Controllers
              ViewBag.JCategory = JObject.Parse(categoryCnt);
              return View((object)fContent);
          }
+
+        //  public IActionResult Image()
+        //  {
+        //     FileInfo fi = new FileInfo(imgPath + imgCode + "_1.jpg");
+        //     FileStream fs = fi.OpenRead(); ;
+        //     byte[] buffer = new byte[fi.Length];
+        //     //读取图片字节流
+        //     fs.Read(buffer, 0, Convert.ToInt32(fi.Length));
+        //     var response = File(buffer, "image/jpeg");
+        //     fs.Close();
+        //     return response;
+        //  }
     }
 }
