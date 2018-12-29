@@ -9,7 +9,7 @@
 
 @section Menu {
   @foreach (var item in (ViewBag.JCategory as JObject)["children"] as JArray) {
-    @if(item["children"] != null) {
+    @if(item["children"] != null && @item["name"].ToString().ToLower() != "images") {
       <a class="nav-item nav-link"
         href="javascript:void(0);" path=@item["path"] onclick='getSubMenu(this);'>@item["name"]</a>
     }

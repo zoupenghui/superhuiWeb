@@ -21,7 +21,7 @@ namespace Superhui.Web.Areas.Docs.Conponents
         {
             foreach (var item in (catalog as JObject)["children"])
             {
-                if(item["children"] != null) {
+                if (item["children"] != null) {
                     Render((JObject)item);
                 }
                 else
@@ -39,6 +39,9 @@ namespace Superhui.Web.Areas.Docs.Conponents
         {
             if (node["children"] != null)
             {
+                // ignore images 
+                if (node["name"].ToString().ToLower() == "images")
+                    return;
                 string htmlParentCnt = $@"
                     <div class='treeNode'>
                         <span onclick='expandCollapse(this.parentNode)' class='cursor category'>➭</span>
@@ -49,7 +52,7 @@ namespace Superhui.Web.Areas.Docs.Conponents
                 foreach(var item in node["children"])
                 {
                     if(item["children"] != null)
-                    {
+                    {                        
                         Render((JObject)item);
                     } 
                     else

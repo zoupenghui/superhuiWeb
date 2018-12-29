@@ -25,34 +25,35 @@ namespace Superhui.Web.Areas.Docs.Controllers
         {
             hostingEnv = env;
         }
-        
-         public async Task<ActionResult> Index(string path = "")
-         {
-             path = path.Trim('/');
-            //  if (path.EndsWith(".jpg") || path.EndsWith(".png") || path.EndsWith(".gif")) {
-            //      return Redirect($"http://localhost:5000/api/file/image/{path}");
-            //  }
-             if(!path.EndsWith(".md"))
-             {
-                 path += ".md";
-             }
-             var cataloguePath = path.Substring(0, path.LastIndexOf('/') + 1);
-             var nr = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/content/{path}");
-             string fContent = await nr.GetAsync<string>();
 
-             var categoryR = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/note");
-             string categoryCnt = await categoryR.GetAsync<string>();
+        public async Task<ActionResult> Index(string path = "")
+        {
+            path = path.Trim('/');
+            if(!path.EndsWith(".md"))
+            {
+                path += ".md";
+            }
 
-             var catalogueInfoRequest = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/{cataloguePath}");
-             string catalogueInfo = await catalogueInfoRequest.GetAsync<string>();
-             JObject o = JObject.Parse(catalogueInfo);
+            var cataloguePath = path.Substring(0, path.LastIndexOf('/') + 1);
+            var nr = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/content/{path}");
+            string fContent = await nr.GetAsync<string>();
 
-             JArray fileInfoArray = (JArray)o.SelectToken("children");
-             ViewBag.Catalogue = fileInfoArray;
-             ViewBag.AllCatalogue = o;
-             ViewBag.JCategory = JObject.Parse(categoryCnt);
-             return View((object)fContent);
-         }
+            var categoryR = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/note");
+            string categoryCnt = await categoryR.GetAsync<string>();
+
+            var catalogueInfoRequest = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/{cataloguePath}");
+            string catalogueInfo = await catalogueInfoRequest.GetAsync<string>();
+            JObject o = JObject.Parse(catalogueInfo);
+
+            // JArray fileInfoArray = (JArray)o.SelectToken("children");
+            // ViewBag.Catalogue = fileInfoArray;
+            
+            // catalogue
+            ViewBag.AllCatalogue = o;
+            // menu
+            ViewBag.JCategory = JObject.Parse(categoryCnt);
+            return View((object)fContent);
+        }
 
         //  public IActionResult Image()
         //  {
