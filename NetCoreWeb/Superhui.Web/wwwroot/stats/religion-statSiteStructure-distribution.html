@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>统计分析</title>
+<link rel="stylesheet" href="./common/css/jquery.fullpage.min.css" />
+<link rel="stylesheet" href="./common/css/area-select.css" />
+<link rel="stylesheet" href="./common/css/statistical-analysis.css" />
+<link rel="stylesheet" type="text/css" href="./common/css/mobileSelect.css">
+<style>
+html{overflow-x: hidden; overflow-y: auto;}
+</style>
+<script type="text/javascript" src="./common/js/mobileSelect.js"></script>
+<script type="text/javascript" src="./common/js/jquery.min.js"></script>
+<script type="text/javascript" src="./common/js/jquery.fullpage.min.js"></script>
+<script type="text/javascript" src="./common/js/jquery.ydui.min.js"></script>
+<script type="text/javascript" src="./common/js/jquery.ydui.flexible.min.js"></script>
+<script type="text/javascript" src="./common/js/echarts.min.js"></script>
+<!--<script type="text/javascript" src="./common/js/echarts-theme/dark.js"></script>-->
+<!--<script type="text/javascript" src="./common/js/echarts-theme/infographic.js"></script>-->
+<script type="text/javascript" src="./common/js/echarts-theme/macarons.js"></script>
+<!--<script type="text/javascript" src="./common/js/echarts-theme/roma.js"></script>-->
+<!--<script type="text/javascript" src="./common/js/echarts-theme/shine.js"></script>-->
+<!--<script type="text/javascript" src="./common/js/echarts-theme/vintage.js"></script>-->
+<script type="text/javascript" src="./common/plugins/lhgdialog/lhgdialog.min.js?skin=discuz"></script>
+<script type="text/javascript" src="./common/js/common.js"></script>
+<script>
+	$(function() {
+		
+		$("#container").fullpage({
+			sectionsColor: ["#f4f4f4"],//为每个section设置background-color属性
+			loopHorizontal: false,
+			navigation: true,// 显示显示上下项目导航
+			navigationPosition: "left",
+			//continuousVertical: true,//左右轮播：true-无缝循环，false-播放到最后一页自动从头开始
+			//continuousHorizontal: true,//上下轮播
+			slidesNavigation: true,
+			controlArrows: false // 是否显示左右切换箭头：true-显示，false-不显示
+		});
+	});
+</script>
+</head>
+
+<body>
+	<div id="container">
+		<div class="section" id="section1">
+			<div class="slide" id="section1-slide1">
+				<!-- <div style="height:8%;">
+					<div class="areaselect-cell-item">
+						<div class="areaselect-cell-left">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+					
+				</div> -->
+
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">教别：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" id='trigger0' value="全部" class="areaselect-cell-input2" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:80%;margin-top: 5%" id="section1-slide1-charts1-container"></div>
+				<div id="section1-slide1-echarts-prompts" class="echarts-prompts">该地区暂无数据或数据查询出现错误！</div>
+			</div>
+			<div class="slide" id="section1-slide2">
+				<!-- <div style="height:8%;">
+					<div class="areaselect-cell-item">
+						<div class="areaselect-cell-left">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div> -->
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">教别：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" id='trigger1' value="全部" class="areaselect-cell-input2" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:80%;margin-top: 5%" id="section1-slide2-charts1-container"></div>
+				<div id="section1-slide2-echarts-prompts" class="echarts-prompts" style="left:58.5%;">该地区暂无数据或数据查询出现错误！</div>
+			</div>
+		</div>
+		
+		<div class="section" id="section2">
+			<div class="slide" id="section2-slide1">
+				<!-- <div style="height:8%;">
+					<div class="areaselect-cell-item">
+						<div class="areaselect-cell-left">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div> -->
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">教别：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" id='trigger2' value="全部" class="areaselect-cell-input2" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:80%;margin-top: 5%" id="section2-slide1-charts1-container"></div>
+				<div id="section2-slide1-echarts-prompts" class="echarts-prompts">该地区暂无数据或数据查询出现错误！</div>
+			</div>
+			<div class="slide" id="section2-slide2">
+				<!-- <div style="height:8%;">
+					<div class="areaselect-cell-item">
+						<div class="areaselect-cell-left">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div> -->
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">教别：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" id='trigger3' value="全部" class="areaselect-cell-input2" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:80%;margin-top: 5%" id="section2-slide2-charts1-container"></div>
+				<div id="section2-slide2-echarts-prompts" class="echarts-prompts" style="left:58.5%;">该地区暂无数据或数据查询出现错误！</div>
+			</div>
+		</div>
+		
+		<div class="section" id="section3">
+			<div class="slide" id="section3-slide1">
+				<!-- <div style="height:8%;">
+					<div class="areaselect-cell-item">
+						<div class="areaselect-cell-left">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div> -->
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">教别：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" id='trigger4' value="全部" class="areaselect-cell-input2" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:80%;margin-top: 5%" id="section3-slide1-charts1-container"></div>
+				<div id="section3-slide1-echarts-prompts" class="echarts-prompts">该地区暂无数据或数据查询出现错误！</div>
+			</div>
+			<div class="slide" id="section3-slide2">
+				<!-- <div style="height:8%;">
+					<div class="areaselect-cell-item">
+						<div class="areaselect-cell-left">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div> -->
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">所在地区：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" class="areaselect-cell-input" placeholder="请选择所在地区" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:5%;">
+					<div class="areaselect-cell-item" style="margin-left: 20px">
+						<div class="areaselect-cell-left" style="flex: 3">教别：</div>
+						<div class="areaselect-cell-right areaselect-cell-arrow" style="flex: 8">
+							<input type="text" id='trigger5' value="全部" class="areaselect-cell-input2" readonly />
+						</div>
+					</div>
+				</div>
+				<div style="height:80%;margin-top: 5%" id="section3-slide2-charts1-container"></div>
+				<div id="section3-slide2-echarts-prompts" class="echarts-prompts" style="left:58.5%;">该地区暂无数据或数据查询出现错误！</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="./common/js/area-select.min.js"></script>
+	<script type="text/javascript" src="./common/js/religion-statSiteStructure-distribution.js"></script>
+</body>
+</html>
