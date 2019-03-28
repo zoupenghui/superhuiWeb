@@ -4,97 +4,31 @@
 </div>
 
 @section Catalog{
-  @*@foreach (var f in (Newtonsoft.Json.Linq.JArray)ViewBag.Catalogue) {
-    <li>
-      <a href="#" path=@f["path"] onclick="getDoc(this)">@f["name"].ToString().Replace(".md", "")</a>
-    </li>
-  }*@
   @await Component.InvokeAsync("Catalog", ViewBag.AllCatalogue)
 }
 
-@section CatalogTree{
-
-  <div class="leftNav">
-    <div id="samplesToc">
-        <div id="tree" style="top: 35px; left: 0px;" class="treeDiv">
-          <div id="treeRoot" onselectstart="return false" ondragstart="return false">
-            <div class="treeNode">
-              <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
-              <span onclick="expandCollapse(this.parentNode)" class="category">目录节点一 </span>
-              <div class="treeSubnodesHidden">
-                  
-                  <div class="treeNode">
-                       <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
-                       <span onclick="expandCollapse(this.parentNode)" class="category">目录节点一子目录 </span>
-                       <div class="treeSubnodesHidden">
-                           <div class="treeNode">
-                              <a href="#" class="treeUnselected" onclick="clickAnchor(this)">二级叶子结点一</a>
-                        </div>
-                        <div class="treeNode">
-                              <a href="#" class="treeUnselected" onclick="clickAnchor(this)">二级叶子结点二</a>
-                        </div>
-                    </div>
-                  </div>
-                  
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点一</a>
-                </div>
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点二</a>
-                </div>
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点三</a>
-                </div>
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点四</a>
-                </div>
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点五</a>
-                </div>
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点六</a>
-                </div>
-              </div>
-            </div>
-            <div class="treeNode">
-              <img src="../graphics/treenodeplus.gif" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
-              <span onclick="expandCollapse(this.parentNode)" class="category">\FF34</span>
-              <span onclick="expandCollapse(this.parentNode)" class="category">目录节点二</span>
-              <div class="treeSubnodesHidden">
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点一</a>
-                </div>
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点二</a>
-                </div>
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点三</a>
-                </div>
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点四</a>
-                </div>
-                <div class="treeNode">
-                  <a href="#" class="treeUnselected" onclick="clickAnchor(this)">叶子结点五</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
+@section Menu {
+  @foreach (var item in (ViewBag.JCategory as JObject)["children"] as JArray) {
+    @if(item["children"] != null && @item["name"].ToString().ToLower() != "images") {
+      <a class="nav-item nav-link"
+        href="javascript:void(0);" path=@item["path"] onclick='getSubMenu(this);'>@item["name"]</a>
+    }
+  }
 }
+
+@*@section Menu {
+  @foreach (var item in (ViewBag.JCategory as JObject)["children"] as JArray) {
+    @if(item["children"] != null) {
+      <a class="p-2 text-muted"
+        href="javascript:void(0);" path=@item["path"] onclick='getSubMenu(this);'>@item["name"]</a>
+    }
+  }
+}*@
 
 @section Links{
   <link rel="stylesheet" href="~/css/mark.css" />
+  <link rel="stylesheet" href="~/lib/node_modules/github-markdown-css/github-markdown.css" />
   <style type="text/css">
-      /*主页面样式*/
-      .leftNav {
-        // width: 180px;
-        // height:500px;
-        // border:#B9E0F7 1px solid;
-        // margin-left: 1%;
-        // margin-right: 1%;
-    }
     .treeDiv {
       color: #636363;
       font-weight: normal;
@@ -104,9 +38,11 @@
       overflow-x: hidden;
     }
     .treeNode {
+      padding-left: 16px;
+      position: relative;
+      overflow: hidden;
+      text-overflow: ellipsis; 
       white-space: nowrap;
-      text-indent: -14px;
-      margin-left: 14px;
     }
     a.treeUnselected:hover, a.treeSelected:hover {
       background-color: #BFD9ED;
@@ -127,17 +63,18 @@
     .treeSubnodesHidden {
       display: none;
     }
-    .treeNode img.treeNoLinkImage, .treeNode img.treeLinkImage {
-      height: 15px;
-      margin-left: 5px;
-      margin-right: 0px;
-      width: 15px;
-    }
-    .treeNode img.treeLinkImage {
-      cursor: pointer;
-    }
+    // .treeNode img.treeNoLinkImage, .treeNode img.treeLinkImage {
+    //   height: 15px;
+    //   margin-left: 5px;
+    //   margin-right: 0px;
+    //   width: 15px;
+    // }
+    // .treeNode img.treeLinkImage {
+    //   cursor: pointer;
+    // }
     div.treeNode a {
       margin-left: 14px;
+      // margin-left: 16px;
       text-indent: 0;
     }
     div.treeNode span.category {
@@ -146,10 +83,14 @@
     span.category {
       color: #007bff
     }
-    .ellipsis {
-      overflow: hidden;
-      text-overflow: ellipsis; 
-      white-space: nowrap;
+    // .ellipsis {
+    //   overflow: hidden;
+    //   text-overflow: ellipsis; 
+    //   white-space: nowrap;
+    // }
+    .cursor {
+      position: absolute;
+      left: 0;
     }
   </style>
 }
@@ -162,13 +103,13 @@
   <script src="~/common/js/jquery.ydui.min.js" asp-append-version="true"></script>
   <script src="~/common/js/jquery.fullpage.min.js" asp-append-version="true"></script>
   <script src="~/common/js/common.js" asp-append-version="true"></script> -->
-  <script type="text/javascript">
+  <script>
     var treeSelected = null;//选中的树节点
-    var imgPlus = new Image();
-    imgPlus.src="../graphics/treenodeplus.gif";
-    var imgMinus = new Image();
-    imgMinus.src="../graphics/treenodeminus.gif";
-    //父节点展开事件
+    // var imgPlus = new Image();
+    // imgPlus.src="../graphics/treenodeplus.gif";
+    // var imgMinus = new Image();
+    // imgMinus.src="../graphics/treenodeminus.gif";
+
     function expandCollapse(el)
     {
         //如果父节点有字节点（class 属性为treeSubnodesHidden），展开所有子节点
@@ -176,24 +117,24 @@
             return;    //判断父节点是否为一个树节点，如果树节点不能展开，请检查是否节点的class属性是否为treeNode
         }    
         var child;
-        var imgEl;//图片子节点，在树展开时更换图片
+        // var imgEl;//图片子节点，在树展开时更换图片
         for(var i=0; i < el.childNodes.length; i++)
         {
             child = el.childNodes[i];
             if (child.src)
             {
-                imgEl = child;
+                // imgEl = child;
             }
             else if (child.className == "treeSubnodesHidden")
             {
                 child.className = "treeSubnodes";//原来若隐藏，则展开
-                imgEl.src = imgMinus.src;//更换图片
+                // imgEl.src = imgMinus.src;//更换图片
                 break;
             }
             else if (child.className == "treeSubnodes")
             {
                 child.className = "treeSubnodesHidden";//原来若展开，则隐藏
-                imgEl.src = imgPlus.src;//更换图片
+                // imgEl.src = imgPlus.src;//更换图片
                 break;
             }
         }
@@ -230,6 +171,13 @@
     $(document).ready(function(){
       document.getElementById('blog-content').innerHTML =
       marked($("#mark-content").val());
+      if(window.history && window.history.pushState) {
+        $(window).on('popstate', function(obj) {
+          //console.log('pop', obj.currentTarget);
+          //console.log(document.location.pathname)
+          fetchRequest("/api/file/content" + document.location.pathname.replace("/docs", ""));
+        });
+      }
     });
 
     @*<!-- xhr -->
@@ -259,16 +207,38 @@
 
     function getDoc (e) {
       const path = $(e).attr('path')
-      const newUrl = `${window.location.protocol}\/\/${document.domain}/docs${path}`;
-      window.history.replaceState({}, '', newUrl);
+      console.log('path', path)
+      // const newUrl = `${window.location.protocol}\/\/${document.domain}/docs${path}`;
+      const newUrl = `${window.location.origin}/docs${path}`;
+      window.history.pushState({}, '', newUrl);
+      fetchRequest("/api/file/content" + path);
+      // fetch("/api/file/content" + path).then(function(response) {
+      //   return response.text();
+      // }).then(function(data) {
+      //   document.getElementById('blog-content').innerHTML = marked(data);
+      // }).catch(function(e) {
+      //   console.log("fetch blog content error!");
+      // });
+    }
 
-      fetch("/api/file/content" + path).then(function(response) {
+    function fetchRequest(url) {
+      fetch(url).then(function(response) {
         return response.text();
       }).then(function(data) {
         document.getElementById('blog-content').innerHTML = marked(data);
       }).catch(function(e) {
         console.log("fetch blog content error!");
       });
+    }
+  </script>
+  <script>
+      function getSubMenu (e) {
+      const path = $(e).attr('path')
+      console.log(window.location.origin)
+      // const newUrl = `${window.location.protocol}\/\/${document.domain}/docs${path}/index.md`;
+      const newUrl = `${window.location.origin}/docs${path}/index.md`;
+      console.log(newUrl)
+      window.location.href=newUrl;
     }
   </script>
 }

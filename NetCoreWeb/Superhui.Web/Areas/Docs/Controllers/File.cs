@@ -25,26 +25,46 @@ namespace Superhui.Web.Areas.Docs.Controllers
         {
             hostingEnv = env;
         }
-        // GET: Blog
-         public async Task<ActionResult> Index(string path = "")
-         {
-             path = path.Trim('/');
-             if(!path.EndsWith(".md"))
-             {
-                 path += ".md";
-             }
-             var cataloguePath = path.Substring(0, path.LastIndexOf('/') + 1);
-             var nr = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/content/{path}");
-             string fContent = await nr.GetAsync<string>();
 
-             var catalogueInfoRequest = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/{cataloguePath}");
-             string catalogueInfo = await catalogueInfoRequest.GetAsync<string>();
-             JObject o = JObject.Parse(catalogueInfo);
-             JArray fileInfoArray = (JArray)o.SelectToken("children");
-             // Console.WriteLine(fileInfoArray.ToString());
-             ViewBag.Catalogue = fileInfoArray;
-             ViewBag.AllCatalogue = o;
-             return View((object)fContent);
-         }
+        public async Task<ActionResult> Index(string path = "")
+        {
+            path = path.Trim('/');
+            if(!path.EndsWith(".md"))
+            {
+                path += ".md";
+            }
+
+            var cataloguePath = path.Substring(0, path.LastIndexOf('/') + 1);
+            var nr = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/content/{path}");
+            string fContent = await nr.GetAsync<string>();
+
+            var categoryR = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/note");
+            string categoryCnt = await categoryR.GetAsync<string>();
+
+            var catalogueInfoRequest = NetworkRequest.CreateHttp($"http://localhost:5000/api/file/fileInfo/{cataloguePath}");
+            string catalogueInfo = await catalogueInfoRequest.GetAsync<string>();
+            JObject o = JObject.Parse(catalogueInfo);
+
+            // JArray fileInfoArray = (JArray)o.SelectToken("children");
+            // ViewBag.Catalogue = fileInfoArray;
+            
+            // catalogue
+            ViewBag.AllCatalogue = o;
+            // menu
+            ViewBag.JCategory = JObject.Parse(categoryCnt);
+            return View((object)fContent);
+        }
+
+        //  public IActionResult Image()
+        //  {
+        //     FileInfo fi = new FileInfo(imgPath + imgCode + "_1.jpg");
+        //     FileStream fs = fi.OpenRead(); ;
+        //     byte[] buffer = new byte[fi.Length];
+        //     //读取图片字节流
+        //     fs.Read(buffer, 0, Convert.ToInt32(fi.Length));
+        //     var response = File(buffer, "image/jpeg");
+        //     fs.Close();
+        //     return response;
+        //  }
     }
 }
