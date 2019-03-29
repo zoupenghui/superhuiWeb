@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Superhui</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/node_modules/bootstrap/dist/css/bootstrap.css" />
+        <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> -->
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <!-- <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" /> -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous"
+            asp-fallback-href="~/lib/node_modules/bootstrap/dist/css/bootstrap.min.css"
+            asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="Docs" asp-controller="Blog" asp-action="list" class="navbar-brand">Superhui</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="Docs" asp-controller="Blog" asp-action="list">Blog</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <footer class="footer ">
+        <div class="container">
+            <div class="row footer-top">
+                <div class="col-sm-6 col-lg-6">
+                    <div class="widget">
+                        <h4 class="title">联系我</h4>
+                        <address>
+                            <strong>邮箱:</strong> <a href="mailto:threshold2015@outlook.com">threshold2015@outlook.com</a><br />
+                            <strong>微信:</strong> <a href="">phzou204</a><br />
+                            <strong>留言给我：</strong><a asp-action="Create" asp-controller="Comment">转到留言板</a>
+                            @*<strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>*@
+                        </address>
+                    </div>
+                </div>
+                <div class="col-sm-6  col-lg-5 col-lg-offset-1">
+                    <div class="row about">
+                        <div class="col-xs-3">
+                            <h4>关于</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="/about/">关于我</a></li>
+                                
+                            </ul>
+                        </div>
+                        @*<div class="col-xs-3">
+                            <h4>联系方式</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="mailto:threshold2015@outlook.com">电子邮件</a></li>
+                            </ul>
+                        </div>*@
+                        
+                    </div>
+
+                </div>
+            </div>
+            <hr />
+            <div class="row footer-bottom">
+                <ul class="list-inline text-center">
+                    <li><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备17032873号</a></li>
+                    <li>SuperHui</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <!-- 2.2.0 -->
+        <!-- <script src="~/lib/jquery/dist/jquery.js"></script> -->
+        <!-- jQuery完整版 -->
+        <!-- <script src="~/lib/node_modules/jquery/dist/jquery.js"></script> -->
+        <!-- jQuery瘦身版 -->
+        <script src="~/lib/node_modules/jquery/dist/jquery.slim.js"></script>
+        <!-- popper -->
+        <script src="~/lib/node_modules/popper.js/dist/popper.js"></script>
+        <script src="~/lib/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <!-- <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script> -->
+
+        <!-- Optional JavaScript -->
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!-- 完整版 -->
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+        <!-- 瘦身版 -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

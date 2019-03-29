@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Superhui.AspNetCore\Superhui.AspNetCore.csproj" />
+    <ProjectReference Include="..\Superhui.Tls\Superhui.Tls.csproj" />
   </ItemGroup>
   
 </Project>
