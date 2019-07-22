@@ -43,15 +43,14 @@ namespace Superhui.Api.Areas.File.Controllers
         [HttpPost]
         public JsonResult Post(IFormFile file)
         {
-            var uploadfile = Request.Form.Files[0];
-            string filePath = hostingEnv.WebRootPath;
-
+            // var uploadfile = Request.Form.Files[0];
+            string rootPath = hostingEnv.WebRootPath;
             string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-            string suffix = fileName.Substring(fileName.LastIndexOf(".", StringComparison.Ordinal) + 1, (fileName.Length - fileName.LastIndexOf(".", StringComparison.Ordinal) - 1));
-            var fileExtension = Path.GetExtension(fileName);
+            // string suffix = fileName.Substring(fileName.LastIndexOf(".", StringComparison.Ordinal) + 1, (fileName.Length - fileName.LastIndexOf(".", StringComparison.Ordinal) - 1));
+            string fileExtension = Path.GetExtension(fileName);
             string[] pictureFormatArray = { "png", "jpg", "jpeg", "bmp", "gif", "ico", "PNG", "JPG", "JPEG", "BMP", "GIF", "ICO" };
-            fileName = Guid.NewGuid() + "." + suffix;
-            string fileFullName = filePath + "/" + fileName;
+            fileName = Guid.NewGuid() + fileExtension;
+            string fileFullName = rootPath + "/" + fileName;
             using (FileStream fs = System.IO.File.Create(fileFullName))
             {
                 file.CopyTo(fs);
