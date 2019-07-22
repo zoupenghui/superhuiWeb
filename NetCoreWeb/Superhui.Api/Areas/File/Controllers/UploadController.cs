@@ -57,7 +57,7 @@ namespace Superhui.Api.Areas.File.Controllers
                 file.CopyTo(fs);
                 fs.Flush();
             }
-            return new JsonResult(new { filePath = $@"http://192.168.8.106:8100/{fileName}"});
+            return new JsonResult(new { filePath = $@"http://file.phzou.com/{fileName}"});
         }
     }
 }
