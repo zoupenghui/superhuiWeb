@@ -29,4 +29,8 @@
     <ProjectReference Include="..\Superhui.Tls\Superhui.Tls.csproj" />
   </ItemGroup>
   
+  <ItemGroup>
+    <Content Remove="Areas\Docs\Views\Shared\Components\Catalog\Default.1.cshtml" />
+    <Content Remove="Areas\Video\Views\Shared\Components\Catalog\Default.1.cshtml" />
+  </ItemGroup>
 </Project>

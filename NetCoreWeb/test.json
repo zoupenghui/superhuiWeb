@@ -1,0 +1,195 @@
+﻿{
+    "count": 2,
+    "home": {
+        "count": 6,
+        "professorData": [
+            {
+                "head_portrait": "/static/assets/images/professor1.jpg",
+                "expert_name": "崔勤",
+                "territory": "人工智能",
+                "expert_info": "建行大学华东学院培训项目研发部总经理，高级经济师。先后在人力资源、办公室、考试测评、培训管理..."
+            },
+            {
+                "head_portrait": "/static/assets/images/professor2.jpg",
+                "expert_name": "张腾",
+                "territory": "云计算",
+                "expert_info": "建行大学华东学院培训项目研发部专职培训师，团委副书记，毕业于北京大学，获教育学硕士，国家二级心理..."
+            },
+            {
+                "head_portrait": "/static/assets/images/professor3.jpg",
+                "expert_name": "梁贵臣",
+                "territory": "物联网",
+                "expert_info": "建行大学东北学院教研一部三级培训师，高级经济师，财税专业大学本科学历。1987年参加工作以来在培训..."
+            }
+        ],
+        "partnerDataList": [
+            { "partner_image": "/static/assets/images/partner1.jpg" },
+            { "partner_image": "/static/assets/images/partner2.jpg" },
+            { "partner_image": "/static/assets/images/partner3.jpg" },
+            { "partner_image": "/static/assets/images/partner4.jpg" },
+            { "partner_image": "/static/assets/images/partner5.jpg" },
+            { "partner_image": "/static/assets/images/partner6.jpg" },
+            { "partner_image": "/static/assets/images/partner7.jpg" },
+            { "partner_image": "/static/assets/images/partner8.jpg" },
+            { "partner_image": "/static/assets/images/partner9.jpg" },
+            { "partner_image": "/static/assets/images/partner10.jpg" }
+        ],
+        "loaded": false,
+        "bannerList": [ { "ad_image": "/static/assets/home/ban/banner_bg.jpg" } ],
+        "subjectList": [
+            {
+                "designation": "固定收益投资研究",
+                "subject_type_name": "人工智能",
+                "image_url": "/static/assets/images/keti1.png",
+                "view_num": "12,090",
+                "information": "该技术属于金融科技和金融工程相机和的交叉领域，主要应用于固定收益类产品的投资研究。",
+                "department": "运营数据中心"
+            },
+            {
+                "designation": "基于公有云技术栈的百G网络接入可行性研究",
+                "subject_type_name": "云计算",
+                "image_url": "/static/assets/images/keti2.png",
+                "view_num": "12,090",
+                "information": "随着目前云计算、大数据、分布式存储、移动互联网的兴起，现有公有云服务器的万兆接入，40G以太网...",
+                "department": "运营数据中心"
+            },
+            {
+                "designation": "物联网在机房的应用研究",
+                "subject_type_name": "物联网",
+                "image_url": "/static/assets/images/keti3.png",
+                "view_num": "12,090",
+                "information": "物联网技术目前在行内机房主要用于机房各类基础环境的数据采集，均为非智能终端。本次对物联网技术进行...",
+                "department": "运营数据中心"
+            },
+            {
+                "designation": "营销活动反欺诈",
+                "subject_type_name": "大数据",
+                "image_url": "/static/assets/images/keti4.png",
+                "view_num": "12,090",
+                "information": "在业务产品营销活动中，识别和阻断薅羊毛和欺诈行为，提升反恶意用户和羊毛党侦测能力，最大程度提高业务产品市场推广与运营效果。",
+                "department": "运营数据中心"
+            }
+        ],
+        "hotDataList": [
+            {
+                "name": "企业合规风险预测数据",
+                "information": "抽取全国3000多万企业，实现对企业合规风险的预测",
+                "view_num": "455,432",
+                "last_edit_time": "2018/09/09"
+            },
+            {
+                "name": "国际货币基金组织数据",
+                "information": "国际货币基金组织公布的有关国际金融、债务利率、外汇储备、商品价格和投资的数据",
+                "view_num": "455,432",
+                "last_edit_time": "2018/09/09"
+            }
+        ],
+        "announcementList": {
+            "page_size": 12,
+            "is_first_page": true,
+            "is_last_page": true,
+            "has_previous_page": false,
+            "has_next_page": false,
+            "navigate_pages": 8,
+            "navigatepage_nums": [ 1 ],
+            "navigate_first_page": 1,
+            "navigate_last_page": 1,
+            "result_list": [
+                {
+                    "notice_id": 79,
+                    "notice_title": "1234",
+                    "status": "01",
+                    "top_flag": true,
+                    "create_time": "2019/08/08",
+                    "url": "http: //58.49.63.13:1082/file/fti/%5B%22image/1565231058057.jpg%22%2C%22image/1565231058818.jpg%22%5D?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDUdQrwglFUNBdjT7tZtsUkeDPFjrdZ6n8%26q-sign-time%3D1565234997%3B1565278197%26q-key-time%3D1565234997%3B1565278197%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Ded4a7213c8e637c5f55a76da3061afbe265f2630"
+                },
+                {
+                    "notice_id": 78,
+                    "notice_title": "123",
+                    "status": "01",
+                    "top_flag": true,
+                    "create_time": "2019/08/08",
+                    "url": "http://58.49.63.13:1082/file/fti/%5B%22image/1565229760932.jpg%22%5D?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDUdQrwglFUNBdjT7tZtsUkeDPFjrdZ6n8%26q-sign-time%3D1565234997%3B1565278197%26q-key-time%3D1565234997%3B1565278197%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3D25181bfd593de7279d3d3c9087dcf58b88e1fd47"
+                },
+                {
+                    "notice_id": 73,
+                    "notice_title": "aaaaaaa",
+                    "status": "01",
+                    "top_flag": false,
+                    "create_time": "2019/08/07",
+                    "last_edit_time": "2019-08-07 15:40:30",
+                    "url": "http://58.49.63.13:1082/file/fti/%5B%5D?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDUdQrwglFUNBdjT7tZtsUkeDPFjrdZ6n8%26q-sign-time%3D1565234997%3B1565278197%26q-key-time%3D1565234997%3B1565278197%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dd69e01047f069783c74c2e6dff20e732f4cfa6fe"
+                },
+                {
+                    "notice_id": 70,
+                    "notice_title": "cct",
+                    "status": "01",
+                    "top_flag": false,
+                    "create_time": "2019/08/06",
+                    "last_edit_time": "2019-08-07 16:00:54"
+                },
+                {
+                    "notice_id": 61,
+                    "notice_title": "建行大学实验室云平台第二届课题竞赛火热进行中建行大学实验室云平台第二届课题竞赛火热进行中实验室云平台第二届课题竞赛实验室云平台中",
+                    "status": "01",
+                    "top_flag": false,
+                    "create_time": "2019/08/06",
+                    "last_edit_time": "2019-08-07 17:00:35",
+                    "url": "http://58.49.63.13:1082/file/fti/%5B%5D?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDUdQrwglFUNBdjT7tZtsUkeDPFjrdZ6n8%26q-sign-time%3D1565234997%3B1565278197%26q-key-time%3D1565234997%3B1565278197%26q-header-list%3D%26q-url-param-list%3D%26q-signature%3Dd69e01047f069783c74c2e6dff20e732f4cfa6fe"
+                }
+            ],
+            "page_no": 1,
+            "start_position": 1,
+            "end_position": 5,
+            "total_page_number": 1,
+            "current_record_number": 5,
+            "pre_page_no": 0,
+            "next_page_no": 0,
+            "total_record_number": 5,
+            "empty": false
+        },
+        "announcementDetail": [],
+        "contestList": [
+            {
+                "competition_name": "网络图像的文本识别",
+                "bonus": "1000",
+                "sponsor": "中国建设银行",
+                "teams": "100",
+                "start_time": "2019/9/1",
+                "end_time": "2019/10/1",
+                "competition_status": "01",
+                "infomation": "在互联网世界中，图片是传递信息的重要媒介。图片文字识别（OCR）在商业领域有重要的应用价值，是数据信息化和线上线下打通的基础，也是学术界的研究热点。然而，研究领域尚没有基于网络图片的、以中文为主的OCR数据集。"
+            },
+            {
+                "competition_name": "网络安全技能大赛",
+                "bonus": "2000",
+                "sponsor": "中国建设银行",
+                "teams": "232",
+                "start_time": "2019/8/25",
+                "end_time": "2019/12/25",
+                "competition_status": "02",
+                "infomation": "当今国内外网络安全形势日趋严峻，为了全方位提升全行员工的信息安全意识，以赛促学,学以致用，发现培养具备金融科技风险知识尤其是网络安全实战技能的人才，打造敢于和黑客等不法分子过招的高水平金融科技风险防控队伍，组织开展网络安全技能大赛，为全行高质量发展保驾护航。"
+            },
+            {
+                "competition_name": "\"数据赢天下\"劳动竞赛",
+                "bonus": "5000",
+                "sponsor": "中国建设银行",
+                "teams": "20",
+                "start_time": "2019/9/1",
+                "end_time": "2019/11/1",
+                "competition_status": "03",
+                "infomation": "营造建行个人业务条线大数据分析企业文化，提升大数据支持个人业务经营决策和精准营销应用水平。"
+            }
+        ]
+    },
+    "user": {
+        "userInfo": {
+            "user_name": "ktgl.user3",
+            "name": "用户三",
+            "uuid": "79d24913da484bfb81e61af18fa6ca5d",
+            "mobile_num": "13401020003",
+            "user_type": "01",
+            "empe_id": ""
+        }
+    }
+}
